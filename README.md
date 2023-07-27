@@ -9,6 +9,9 @@ A Toothbrushing Timer App That Syncs To The Brushing Time Apple Health App On iO
 - Set Of Standard Timers
 - Custom Timers
 - Sync Brushing Times To Apple Health
+- watchOS Complication Support
+- iOS Lock Screen Widgets
+- Siri Shortcuts Support
 
 ## Releases
 
