@@ -119,13 +119,21 @@ struct ContentView: View {
                         }
                     }
                 }
+                Divider()
+                HStack {
+                    Spacer()
+                    Text("Custom Timers")
+                        .bold()
+                        .font(.title2)
+                    Spacer()
+                }
                 HStack {
                     Spacer()
                     VStack {
                         Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
                         Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
                         Button(action: {showingCurrentTimer = true}) {
-                            Text("Start Custom Timer")
+                            Text("Start Timer")
                                 .bold()
                                 .font(.title)
                         }
