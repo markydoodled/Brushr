@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var disabledPause = false
     @State var timeRemaining = 30
     @State var startTime = 30
+    @State var customMinutes = 0
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var formattedTimeSeconds = ""
     @Environment(\.scenePhase) var scenePhase
@@ -198,7 +199,18 @@ struct ContentView: View {
                     VStack {
                         Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
                         Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            customMinutes = customMinuteSelection * 60
+                            timeRemaining = customMinutes + customSecondSelection
+                            startTime = customMinutes + customSecondSelection
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             Text("Start Timer")
                                 .bold()
                                 .font(.title)
