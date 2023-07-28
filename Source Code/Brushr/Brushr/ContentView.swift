@@ -14,20 +14,36 @@ struct ContentView: View {
     @State var disabledCustomStart = false
     @State var disabledResume = true
     @State var disabledPause = false
+    @State var timeRemaining = 30
+    @State var startTime = 30
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var formattedTimeSeconds = ""
+    @Environment(\.scenePhase) var scenePhase
+    @State var isActive = true
     var body: some View {
         NavigationStack {
             ScrollView {
                 Grid {
                     GridRow {
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 30
+                            startTime = 30
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("00:30")
                                     .font(.title)
@@ -35,15 +51,25 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 60
+                            startTime = 60
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("01:00")
                                     .font(.title)
@@ -51,15 +77,25 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 120
+                            startTime = 120
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("02:00")
                                     .font(.title)
@@ -69,15 +105,25 @@ struct ContentView: View {
                         }
                     }
                     GridRow {
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 180
+                            startTime = 180
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("03:00")
                                     .font(.title)
@@ -85,15 +131,25 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 240
+                            startTime = 240
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("04:00")
                                     .font(.title)
@@ -101,15 +157,25 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Button(action: {showingCurrentTimer = true}) {
+                        Button(action: {
+                            let formatter = DateComponentsFormatter()
+                            formatter.allowedUnits = [.minute, .second]
+                            formatter.unitsStyle = .positional
+                            timeRemaining = 300
+                            startTime = 300
+                            disabledResume = true
+                            disabledPause = false
+                            formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                            showingCurrentTimer = true
+                        }) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 95, height: 95)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 90, height: 90)
                                     .padding()
                                 Text("05:00")
                                     .font(.title)
@@ -170,13 +236,23 @@ struct ContentView: View {
             }
             .fullScreenCover(isPresented: $showingCurrentTimer) {
                 VStack {
-                    Text("00:00")
-                        .bold()
-                        .font(.largeTitle)
-                    ProgressView(value: 0.75, total: 1.0)
+                    if timeRemaining <= 59 {
+                        Text("\(formattedTimeSeconds) Seconds")
+                            .bold()
+                            .font(.largeTitle)
+                    } else {
+                        Text("\(formattedTimeSeconds)")
+                            .bold()
+                            .font(.largeTitle)
+                    }
+                    ProgressView(value: Double(timeRemaining), total: Double(startTime))
                         .progressViewStyle(.linear)
                         .padding(.bottom)
-                    Button(action: {}) {
+                    Button(action: {
+                        self.timer.upstream.connect().cancel()
+                        disabledPause = true
+                        disabledResume = false
+                    }) {
                         Text("Pause")
                             .bold()
                             .font(.title)
@@ -184,7 +260,11 @@ struct ContentView: View {
                     .buttonStyle(.borderedProminent)
                     .disabled(disabledPause)
                     .padding(.bottom)
-                    Button(action: {}) {
+                    Button(action: {
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        disabledPause = false
+                        disabledResume = true
+                    }) {
                         Text("Resume")
                             .bold()
                             .font(.title)
@@ -201,6 +281,25 @@ struct ContentView: View {
                     .padding(.bottom)
                 }
                 .padding(.horizontal)
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        isActive = true
+                    } else {
+                        isActive = false
+                    }
+                }
+                .onReceive(timer) { time in
+                    guard isActive else { return }
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                        let formatter = DateComponentsFormatter()
+                        formatter.allowedUnits = [.minute, .second]
+                        formatter.unitsStyle = .positional
+                        formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                    } else {
+                        showingCurrentTimer = false
+                    }
+                }
             }
         }
     }
