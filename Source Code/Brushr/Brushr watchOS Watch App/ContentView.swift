@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Brushr
+//  Brushr watchOS Watch App
 //
-//  Created by Mark Howard on 27/07/2023.
+//  Created by Mark Howard on 28/07/2023.
 //
 
 import SwiftUI
@@ -24,49 +24,49 @@ struct ContentView: View {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("00:30")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                         Button(action: {showingCurrentTimer = true}) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("01:00")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                         Button(action: {showingCurrentTimer = true}) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("02:00")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                     }
                     GridRow {
                         Button(action: {showingCurrentTimer = true}) {
@@ -74,49 +74,49 @@ struct ContentView: View {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("03:00")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                         Button(action: {showingCurrentTimer = true}) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("04:00")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                         Button(action: {showingCurrentTimer = true}) {
                             ZStack {
                                 Circle()
                                     .stroke(style: .init(lineWidth: 5))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 105, height: 105)
+                                    .frame(width: 55, height: 55)
                                 Circle()
                                     .foregroundColor(.secondary)
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 50, height: 50)
                                     .padding()
                                 Text("05:00")
-                                    .font(.title)
                                     .bold()
                                     .foregroundColor(.white)
                             }
                         }
+                        .buttonStyle(.borderless)
                     }
                 }
                 Divider()
@@ -124,18 +124,19 @@ struct ContentView: View {
                     Spacer()
                     Text("Custom Timers")
                         .bold()
-                        .font(.title2)
+                        .font(.title3)
                     Spacer()
                 }
                 HStack {
                     Spacer()
                     VStack {
-                        Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
-                        Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
+                        Text("Minutes")
+                        Stepper("\(customMinuteSelection)", value: $customMinuteSelection, in: 0...10)
+                        Text("Seconds")
+                        Stepper("\(customSecondSelection)", value: $customSecondSelection, in: 0...59)
                         Button(action: {showingCurrentTimer = true}) {
                             Text("Start Timer")
                                 .bold()
-                                .font(.title)
                         }
                         .buttonStyle(.borderedProminent)
                         .disabled(disabledCustomStart)
@@ -169,38 +170,39 @@ struct ContentView: View {
                 }
             }
             .fullScreenCover(isPresented: $showingCurrentTimer) {
-                VStack {
-                    Text("00:00")
-                        .bold()
-                        .font(.largeTitle)
-                    ProgressView(value: 0.75, total: 1.0)
-                        .progressViewStyle(.linear)
+                ScrollView {
+                    VStack {
+                        Text("00:00")
+                            .bold()
+                            .font(.largeTitle)
+                        ProgressView(value: 0.75, total: 1.0)
+                            .progressViewStyle(.linear)
+                            .padding(.bottom)
+                        Button(action: {}) {
+                            Text("Pause")
+                                .bold()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(disabledPause)
                         .padding(.bottom)
-                    Button(action: {}) {
-                        Text("Pause")
-                            .bold()
-                            .font(.title)
+                        Button(action: {}) {
+                            Text("Resume")
+                                .bold()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(disabledResume)
+                        .padding(.bottom)
+                        Button(action: {showingCurrentTimer = false}) {
+                            Text("End")
+                                .bold()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.bottom)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(disabledPause)
-                    .padding(.bottom)
-                    Button(action: {}) {
-                        Text("Resume")
-                            .bold()
-                            .font(.title)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(disabledResume)
-                    .padding(.bottom)
-                    Button(action: {showingCurrentTimer = false}) {
-                        Text("End")
-                            .bold()
-                            .font(.title)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.bottom)
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }

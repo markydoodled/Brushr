@@ -11,7 +11,36 @@
 		D5EAB91D2A7310A40086E666 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB91C2A7310A40086E666 /* ContentView.swift */; };
 		D5EAB91F2A7310A50086E666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB91E2A7310A50086E666 /* Assets.xcassets */; };
 		D5EAB9222A7310A50086E666 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB9212A7310A50086E666 /* Preview Assets.xcassets */; };
+		D5EAB9302A73B8D30086E666 /* Brushr_watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB92F2A73B8D30086E666 /* Brushr_watchOSApp.swift */; };
+		D5EAB9322A73B8D30086E666 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB9312A73B8D30086E666 /* ContentView.swift */; };
+		D5EAB9342A73B8D40086E666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB9332A73B8D40086E666 /* Assets.xcassets */; };
+		D5EAB9372A73B8D40086E666 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB9362A73B8D40086E666 /* Preview Assets.xcassets */; };
+		D5EAB93A2A73B8D40086E666 /* Brushr.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5EAB92D2A73B8D30086E666 /* Brushr.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5EAB9382A73B8D40086E666 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5EAB90F2A7310A40086E666 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5EAB92C2A73B8D30086E666;
+			remoteInfo = "Brushr watchOS Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D5EAB93E2A73B8D40086E666 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D5EAB93A2A73B8D40086E666 /* Brushr.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D5EAB9172A7310A40086E666 /* Brushr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brushr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,10 +49,23 @@
 		D5EAB91E2A7310A50086E666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5EAB9212A7310A50086E666 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D5EAB9282A73135C0086E666 /* Brushr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Brushr.entitlements; sourceTree = "<group>"; };
+		D5EAB92D2A73B8D30086E666 /* Brushr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brushr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EAB92F2A73B8D30086E666 /* Brushr_watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_watchOSApp.swift; sourceTree = "<group>"; };
+		D5EAB9312A73B8D30086E666 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D5EAB9332A73B8D40086E666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5EAB9362A73B8D40086E666 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D5EAB93F2A73B8FD0086E666 /* Brushr watchOS Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brushr watchOS Watch App.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D5EAB9142A7310A40086E666 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EAB92A2A73B8D30086E666 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				D5EAB9192A7310A40086E666 /* Brushr */,
+				D5EAB92E2A73B8D30086E666 /* Brushr watchOS Watch App */,
 				D5EAB9182A7310A40086E666 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				D5EAB9172A7310A40086E666 /* Brushr.app */,
+				D5EAB92D2A73B8D30086E666 /* Brushr.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +113,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D5EAB92E2A73B8D30086E666 /* Brushr watchOS Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				D5EAB93F2A73B8FD0086E666 /* Brushr watchOS Watch App.entitlements */,
+				D5EAB92F2A73B8D30086E666 /* Brushr_watchOSApp.swift */,
+				D5EAB9312A73B8D30086E666 /* ContentView.swift */,
+				D5EAB9332A73B8D40086E666 /* Assets.xcassets */,
+				D5EAB9352A73B8D40086E666 /* Preview Content */,
+			);
+			path = "Brushr watchOS Watch App";
+			sourceTree = "<group>";
+		};
+		D5EAB9352A73B8D40086E666 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D5EAB9362A73B8D40086E666 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -79,14 +143,33 @@
 				D5EAB9132A7310A40086E666 /* Sources */,
 				D5EAB9142A7310A40086E666 /* Frameworks */,
 				D5EAB9152A7310A40086E666 /* Resources */,
+				D5EAB93E2A73B8D40086E666 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EAB9392A73B8D40086E666 /* PBXTargetDependency */,
+			);
+			name = Brushr;
+			productName = Brushr;
+			productReference = D5EAB9172A7310A40086E666 /* Brushr.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5EAB92C2A73B8D30086E666 /* Brushr watchOS Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EAB93B2A73B8D40086E666 /* Build configuration list for PBXNativeTarget "Brushr watchOS Watch App" */;
+			buildPhases = (
+				D5EAB9292A73B8D30086E666 /* Sources */,
+				D5EAB92A2A73B8D30086E666 /* Frameworks */,
+				D5EAB92B2A73B8D30086E666 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Brushr;
-			productName = Brushr;
-			productReference = D5EAB9172A7310A40086E666 /* Brushr.app */;
+			name = "Brushr watchOS Watch App";
+			productName = "Brushr watchOS Watch App";
+			productReference = D5EAB92D2A73B8D30086E666 /* Brushr.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -100,6 +183,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					D5EAB9162A7310A40086E666 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					D5EAB92C2A73B8D30086E666 = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
@@ -118,6 +204,7 @@
 			projectRoot = "";
 			targets = (
 				D5EAB9162A7310A40086E666 /* Brushr */,
+				D5EAB92C2A73B8D30086E666 /* Brushr watchOS Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -129,6 +216,15 @@
 			files = (
 				D5EAB9222A7310A50086E666 /* Preview Assets.xcassets in Resources */,
 				D5EAB91F2A7310A50086E666 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EAB92B2A73B8D30086E666 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EAB9372A73B8D40086E666 /* Preview Assets.xcassets in Resources */,
+				D5EAB9342A73B8D40086E666 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +240,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5EAB9292A73B8D30086E666 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EAB9322A73B8D30086E666 /* ContentView.swift in Sources */,
+				D5EAB9302A73B8D30086E666 /* Brushr_watchOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5EAB9392A73B8D40086E666 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5EAB92C2A73B8D30086E666 /* Brushr watchOS Watch App */;
+			targetProxy = D5EAB9382A73B8D40086E666 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D5EAB9232A7310A50086E666 /* Debug */ = {
@@ -204,6 +317,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -258,12 +372,14 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
 		D5EAB9262A7310A50086E666 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Brushr/Brushr.entitlements;
@@ -301,6 +417,7 @@
 		D5EAB9272A7310A50086E666 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Brushr/Brushr.entitlements;
@@ -335,6 +452,70 @@
 			};
 			name = Release;
 		};
+		D5EAB93C2A73B8D40086E666 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Brushr watchOS Watch App/Brushr watchOS Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Brushr watchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = ZWASU9HFBU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.MSJ.Brushr;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr.watchkitapp;
+				PRODUCT_NAME = Brushr;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		D5EAB93D2A73B8D40086E666 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Brushr watchOS Watch App/Brushr watchOS Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Brushr watchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = ZWASU9HFBU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.MSJ.Brushr;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr.watchkitapp;
+				PRODUCT_NAME = Brushr;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -352,6 +533,15 @@
 			buildConfigurations = (
 				D5EAB9262A7310A50086E666 /* Debug */,
 				D5EAB9272A7310A50086E666 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5EAB93B2A73B8D40086E666 /* Build configuration list for PBXNativeTarget "Brushr watchOS Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EAB93C2A73B8D40086E666 /* Debug */,
+				D5EAB93D2A73B8D40086E666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
