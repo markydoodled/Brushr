@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import HealthKit
 
 @main
 struct BrushrApp: App {
