@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @State var customMinuteSelection = 1
@@ -31,6 +32,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 30
                             startTime = 30
                             disabledResume = true
@@ -57,6 +60,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 60
                             startTime = 60
                             disabledResume = true
@@ -83,6 +88,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 120
                             startTime = 120
                             disabledResume = true
@@ -111,6 +118,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 180
                             startTime = 180
                             disabledResume = true
@@ -137,6 +146,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 240
                             startTime = 240
                             disabledResume = true
@@ -163,6 +174,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             timeRemaining = 300
                             startTime = 300
                             disabledResume = true
@@ -204,6 +217,8 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            let systemSoundID: SystemSoundID = 1110
+                            AudioServicesPlaySystemSound(systemSoundID)
                             customMinutes = customMinuteSelection * 60
                             timeRemaining = customMinutes + customSecondSelection
                             startTime = customMinutes + customSecondSelection
@@ -263,6 +278,8 @@ struct ContentView: View {
                         .padding(.bottom)
                     Button(action: {
                         self.timer.upstream.connect().cancel()
+                        let systemSoundID: SystemSoundID = 1115
+                        AudioServicesPlaySystemSound(systemSoundID)
                         disabledPause = true
                         disabledResume = false
                     }) {
@@ -274,6 +291,8 @@ struct ContentView: View {
                     .disabled(disabledPause)
                     .padding(.bottom)
                     Button(action: {
+                        let systemSoundID: SystemSoundID = 1116
+                        AudioServicesPlaySystemSound(systemSoundID)
                         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                         disabledPause = false
                         disabledResume = true
@@ -285,7 +304,11 @@ struct ContentView: View {
                     .buttonStyle(.borderedProminent)
                     .disabled(disabledResume)
                     .padding(.bottom)
-                    Button(action: {showingCurrentTimer = false}) {
+                    Button(action: {
+                        let systemSoundID: SystemSoundID = 1112
+                        AudioServicesPlaySystemSound(systemSoundID)
+                        showingCurrentTimer = false
+                    }) {
                         Text("End")
                             .bold()
                             .font(.title)
@@ -310,6 +333,8 @@ struct ContentView: View {
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                     } else {
+                        let systemSoundID: SystemSoundID = 1111
+                        AudioServicesPlaySystemSound(systemSoundID)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCurrentTimer = false
                     }
