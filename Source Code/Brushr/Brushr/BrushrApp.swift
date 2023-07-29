@@ -43,7 +43,7 @@ class HealthKitManager: ObservableObject {
         guard let healthStore = healthStore else { return }
         
         let categoryType = HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!
-        let sample = HKCategorySample(type: categoryType, value: 0, start: Date(), end: Date() + TimeInterval(timeInSeconds))
+        let sample = HKCategorySample(type: categoryType, value: 0, start: Date() - TimeInterval(timeInSeconds), end: Date())
         
         healthStore.save(sample) { (success, error) in
             if !success {
