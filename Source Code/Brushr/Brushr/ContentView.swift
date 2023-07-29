@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var formattedTimeSeconds = ""
     @Environment(\.scenePhase) var scenePhase
     @State var isActive = true
+    @StateObject private var healthKitManager = HealthKitManager()
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -309,10 +310,14 @@ struct ContentView: View {
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                     } else {
+                        healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCurrentTimer = false
                     }
                 }
             }
+        }
+        .onAppear() {
+            healthKitManager.requestAuthorization()
         }
     }
 }
