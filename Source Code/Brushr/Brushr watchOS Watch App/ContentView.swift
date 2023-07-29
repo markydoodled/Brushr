@@ -31,6 +31,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 30
                             startTime = 30
                             disabledResume = true
@@ -57,6 +58,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 60
                             startTime = 60
                             disabledResume = true
@@ -85,6 +87,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 120
                             startTime = 120
                             disabledResume = true
@@ -111,6 +114,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 180
                             startTime = 180
                             disabledResume = true
@@ -139,6 +143,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 240
                             startTime = 240
                             disabledResume = true
@@ -165,6 +170,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             timeRemaining = 300
                             startTime = 300
                             disabledResume = true
@@ -208,6 +214,7 @@ struct ContentView: View {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
                             formatter.unitsStyle = .positional
+                            WKInterfaceDevice.current().play(.start)
                             customMinutes = customMinuteSelection * 60
                             timeRemaining = customMinutes + customSecondSelection
                             startTime = customMinutes + customSecondSelection
@@ -267,6 +274,7 @@ struct ContentView: View {
                             .padding(.bottom)
                         Button(action: {
                             self.timer.upstream.connect().cancel()
+                            WKInterfaceDevice.current().play(.stop)
                             disabledPause = true
                             disabledResume = false
                         }) {
@@ -277,6 +285,7 @@ struct ContentView: View {
                         .disabled(disabledPause)
                         .padding(.bottom)
                         Button(action: {
+                            WKInterfaceDevice.current().play(.start)
                             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                             disabledPause = false
                             disabledResume = true
@@ -287,7 +296,10 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                         .disabled(disabledResume)
                         .padding(.bottom)
-                        Button(action: {showingCurrentTimer = false}) {
+                        Button(action: {
+                            WKInterfaceDevice.current().play(.failure)
+                            showingCurrentTimer = false
+                        }) {
                             Text("End")
                                 .bold()
                         }
@@ -311,6 +323,7 @@ struct ContentView: View {
                             formatter.unitsStyle = .positional
                             formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                         } else {
+                            WKInterfaceDevice.current().play(.success)
                             healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                             showingCurrentTimer = false
                         }
