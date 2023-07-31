@@ -1,8 +1,8 @@
 //
 //  AppIntents.swift
-//  Brushr
+//  Brushr watchOS Watch App
 //
-//  Created by Mark Howard on 29/07/2023.
+//  Created by Mark Howard on 31/07/2023.
 //
 
 import AppIntents

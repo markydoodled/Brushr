@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D59F92A42A784C7C0063AA5E /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F92A32A784C7C0063AA5E /* AppIntents.swift */; };
 		D5EAB91B2A7310A40086E666 /* BrushrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB91A2A7310A40086E666 /* BrushrApp.swift */; };
 		D5EAB91D2A7310A40086E666 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB91C2A7310A40086E666 /* ContentView.swift */; };
 		D5EAB91F2A7310A50086E666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB91E2A7310A50086E666 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D59F92A32A784C7C0063AA5E /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		D5EAB9172A7310A40086E666 /* Brushr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brushr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EAB91A2A7310A40086E666 /* BrushrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushrApp.swift; sourceTree = "<group>"; };
 		D5EAB91C2A7310A40086E666 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				D5EAB9312A73B8D30086E666 /* ContentView.swift */,
 				D5EAB9332A73B8D40086E666 /* Assets.xcassets */,
 				D5EAB9352A73B8D40086E666 /* Preview Content */,
+				D59F92A32A784C7C0063AA5E /* AppIntents.swift */,
 			);
 			path = "Brushr watchOS Watch App";
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				D5EAB9322A73B8D30086E666 /* ContentView.swift in Sources */,
 				D5EAB9302A73B8D30086E666 /* Brushr_watchOSApp.swift in Sources */,
+				D59F92A42A784C7C0063AA5E /* AppIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
