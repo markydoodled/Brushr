@@ -16,6 +16,7 @@
 		D5EAB9342A73B8D40086E666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB9332A73B8D40086E666 /* Assets.xcassets */; };
 		D5EAB9372A73B8D40086E666 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB9362A73B8D40086E666 /* Preview Assets.xcassets */; };
 		D5EAB93A2A73B8D40086E666 /* Brushr.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5EAB92D2A73B8D30086E666 /* Brushr.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5EAB9412A7589270086E666 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB9402A7589270086E666 /* AppIntents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D5EAB9332A73B8D40086E666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5EAB9362A73B8D40086E666 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D5EAB93F2A73B8FD0086E666 /* Brushr watchOS Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brushr watchOS Watch App.entitlements"; sourceTree = "<group>"; };
+		D5EAB9402A7589270086E666 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				D5EAB91C2A7310A40086E666 /* ContentView.swift */,
 				D5EAB91E2A7310A50086E666 /* Assets.xcassets */,
 				D5EAB9202A7310A50086E666 /* Preview Content */,
+				D5EAB9402A7589270086E666 /* AppIntents.swift */,
 			);
 			path = Brushr;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			files = (
 				D5EAB91D2A7310A40086E666 /* ContentView.swift in Sources */,
 				D5EAB91B2A7310A40086E666 /* BrushrApp.swift in Sources */,
+				D5EAB9412A7589270086E666 /* AppIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
