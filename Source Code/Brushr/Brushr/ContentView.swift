@@ -9,8 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-    @State var customMinuteSelection = 1
-    @State var customSecondSelection = 30
+    @AppStorage("customMinuteSelection") var customMinuteSelection = 1
+    @AppStorage("customSecondSelection") var customSecondSelection = 30
     @State var showingCurrentTimer = false
     @State var disabledCustomStart = false
     @State var disabledResume = true
@@ -23,6 +23,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var isActive = true
     @StateObject private var healthKitManager = HealthKitManager()
+    @State var showingCustomTimer = false
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -343,6 +344,131 @@ struct ContentView: View {
         }
         .onAppear() {
             healthKitManager.requestAuthorization()
+        }
+        .onOpenURL { url in
+            guard url.scheme == "brushr" else { return }
+            if url == URL(string: "brushr://30sec") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 30
+                startTime = 30
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://1min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 60
+                startTime = 60
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://2min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 120
+                startTime = 120
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://3min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 180
+                startTime = 180
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://4min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 240
+                startTime = 240
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://5min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                let systemSoundID: SystemSoundID = 1110
+                AudioServicesPlaySystemSound(systemSoundID)
+                timeRemaining = 300
+                startTime = 300
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://custom") {
+                showingCustomTimer = true
+            } else {
+                print("URL Error")
+            }
+        }
+        .sheet(isPresented: $showingCustomTimer) {
+            customTimer
+        }
+    }
+    var customTimer: some View {
+        NavigationStack {
+            VStack {
+                Spacer()
+                Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
+                Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
+                Button(action: {
+                    let formatter = DateComponentsFormatter()
+                    formatter.allowedUnits = [.minute, .second]
+                    formatter.unitsStyle = .positional
+                    let systemSoundID: SystemSoundID = 1110
+                    AudioServicesPlaySystemSound(systemSoundID)
+                    customMinutes = customMinuteSelection * 60
+                    timeRemaining = customMinutes + customSecondSelection
+                    startTime = customMinutes + customSecondSelection
+                    disabledResume = true
+                    disabledPause = false
+                    formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                    showingCustomTimer = false
+                    showingCurrentTimer = true
+                }) {
+                    Text("Start Timer")
+                        .bold()
+                        .font(.title)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(disabledCustomStart)
+                .padding()
+                Spacer()
+            }
+            .padding(.horizontal)
+            .navigationTitle("Custom Timers")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {showingCustomTimer = false}) {
+                        Text("Cancel")
+                    }
+                }
+            }
         }
     }
 }

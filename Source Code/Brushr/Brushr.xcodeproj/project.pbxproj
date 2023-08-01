@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D59F92A42A784C7C0063AA5E /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F92A32A784C7C0063AA5E /* AppIntents.swift */; };
+		D59F92AC2A784EA70063AA5E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59F92AB2A784EA70063AA5E /* WidgetKit.framework */; };
+		D59F92AE2A784EA70063AA5E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59F92AD2A784EA70063AA5E /* SwiftUI.framework */; };
+		D59F92B12A784EA70063AA5E /* Brushr_iOS_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F92B02A784EA70063AA5E /* Brushr_iOS_WidgetBundle.swift */; };
+		D59F92B32A784EA70063AA5E /* Brushr_iOS_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F92B22A784EA70063AA5E /* Brushr_iOS_Widget.swift */; };
+		D59F92B52A784EA90063AA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59F92B42A784EA90063AA5E /* Assets.xcassets */; };
+		D59F92B92A784EA90063AA5E /* Brushr iOS WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D59F92A92A784EA70063AA5E /* Brushr iOS WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D5EAB91B2A7310A40086E666 /* BrushrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB91A2A7310A40086E666 /* BrushrApp.swift */; };
 		D5EAB91D2A7310A40086E666 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAB91C2A7310A40086E666 /* ContentView.swift */; };
 		D5EAB91F2A7310A50086E666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EAB91E2A7310A50086E666 /* Assets.xcassets */; };
@@ -21,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D59F92B72A784EA90063AA5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5EAB90F2A7310A40086E666 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D59F92A82A784EA70063AA5E;
+			remoteInfo = "Brushr iOS WidgetExtension";
+		};
 		D5EAB9382A73B8D40086E666 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D5EAB90F2A7310A40086E666 /* Project object */;
@@ -31,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D59F92BA2A784EA90063AA5E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D59F92B92A784EA90063AA5E /* Brushr iOS WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5EAB93E2A73B8D40086E666 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +70,15 @@
 
 /* Begin PBXFileReference section */
 		D59F92A32A784C7C0063AA5E /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
+		D59F92A92A784EA70063AA5E /* Brushr iOS WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Brushr iOS WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D59F92AB2A784EA70063AA5E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D59F92AD2A784EA70063AA5E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D59F92B02A784EA70063AA5E /* Brushr_iOS_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_iOS_WidgetBundle.swift; sourceTree = "<group>"; };
+		D59F92B22A784EA70063AA5E /* Brushr_iOS_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_iOS_Widget.swift; sourceTree = "<group>"; };
+		D59F92B42A784EA90063AA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D59F92B62A784EA90063AA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D59F92BE2A784EC20063AA5E /* Brushr iOS WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brushr iOS WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		D59F92BF2A79754F0063AA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D5EAB9172A7310A40086E666 /* Brushr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brushr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EAB91A2A7310A40086E666 /* BrushrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushrApp.swift; sourceTree = "<group>"; };
 		D5EAB91C2A7310A40086E666 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +95,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D59F92A62A784EA70063AA5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59F92AE2A784EA70063AA5E /* SwiftUI.framework in Frameworks */,
+				D59F92AC2A784EA70063AA5E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5EAB9142A7310A40086E666 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,11 +121,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D59F92AA2A784EA70063AA5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D59F92AB2A784EA70063AA5E /* WidgetKit.framework */,
+				D59F92AD2A784EA70063AA5E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D59F92AF2A784EA70063AA5E /* Brushr iOS Widget */ = {
+			isa = PBXGroup;
+			children = (
+				D59F92B02A784EA70063AA5E /* Brushr_iOS_WidgetBundle.swift */,
+				D59F92B22A784EA70063AA5E /* Brushr_iOS_Widget.swift */,
+				D59F92B42A784EA90063AA5E /* Assets.xcassets */,
+				D59F92B62A784EA90063AA5E /* Info.plist */,
+			);
+			path = "Brushr iOS Widget";
+			sourceTree = "<group>";
+		};
 		D5EAB90E2A7310A40086E666 = {
 			isa = PBXGroup;
 			children = (
+				D59F92BE2A784EC20063AA5E /* Brushr iOS WidgetExtension.entitlements */,
 				D5EAB9192A7310A40086E666 /* Brushr */,
 				D5EAB92E2A73B8D30086E666 /* Brushr watchOS Watch App */,
+				D59F92AF2A784EA70063AA5E /* Brushr iOS Widget */,
+				D59F92AA2A784EA70063AA5E /* Frameworks */,
 				D5EAB9182A7310A40086E666 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,6 +158,7 @@
 			children = (
 				D5EAB9172A7310A40086E666 /* Brushr.app */,
 				D5EAB92D2A73B8D30086E666 /* Brushr.app */,
+				D59F92A92A784EA70063AA5E /* Brushr iOS WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +166,7 @@
 		D5EAB9192A7310A40086E666 /* Brushr */ = {
 			isa = PBXGroup;
 			children = (
+				D59F92BF2A79754F0063AA5E /* Info.plist */,
 				D5EAB9282A73135C0086E666 /* Brushr.entitlements */,
 				D5EAB91A2A7310A40086E666 /* BrushrApp.swift */,
 				D5EAB91C2A7310A40086E666 /* ContentView.swift */,
@@ -142,6 +209,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D59F92A82A784EA70063AA5E /* Brushr iOS WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D59F92BD2A784EA90063AA5E /* Build configuration list for PBXNativeTarget "Brushr iOS WidgetExtension" */;
+			buildPhases = (
+				D59F92A52A784EA70063AA5E /* Sources */,
+				D59F92A62A784EA70063AA5E /* Frameworks */,
+				D59F92A72A784EA70063AA5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Brushr iOS WidgetExtension";
+			productName = "Brushr iOS WidgetExtension";
+			productReference = D59F92A92A784EA70063AA5E /* Brushr iOS WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D5EAB9162A7310A40086E666 /* Brushr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5EAB9252A7310A50086E666 /* Build configuration list for PBXNativeTarget "Brushr" */;
@@ -150,11 +234,13 @@
 				D5EAB9142A7310A40086E666 /* Frameworks */,
 				D5EAB9152A7310A40086E666 /* Resources */,
 				D5EAB93E2A73B8D40086E666 /* Embed Watch Content */,
+				D59F92BA2A784EA90063AA5E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D5EAB9392A73B8D40086E666 /* PBXTargetDependency */,
+				D59F92B82A784EA90063AA5E /* PBXTargetDependency */,
 			);
 			name = Brushr;
 			productName = Brushr;
@@ -188,6 +274,9 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					D59F92A82A784EA70063AA5E = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					D5EAB9162A7310A40086E666 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -211,11 +300,20 @@
 			targets = (
 				D5EAB9162A7310A40086E666 /* Brushr */,
 				D5EAB92C2A73B8D30086E666 /* Brushr watchOS Watch App */,
+				D59F92A82A784EA70063AA5E /* Brushr iOS WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D59F92A72A784EA70063AA5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59F92B52A784EA90063AA5E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5EAB9152A7310A40086E666 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +335,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D59F92A52A784EA70063AA5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59F92B12A784EA70063AA5E /* Brushr_iOS_WidgetBundle.swift in Sources */,
+				D59F92B32A784EA70063AA5E /* Brushr_iOS_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5EAB9132A7310A40086E666 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +367,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D59F92B82A784EA90063AA5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D59F92A82A784EA70063AA5E /* Brushr iOS WidgetExtension */;
+			targetProxy = D59F92B72A784EA90063AA5E /* PBXContainerItemProxy */;
+		};
 		D5EAB9392A73B8D40086E666 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D5EAB92C2A73B8D30086E666 /* Brushr watchOS Watch App */;
@@ -268,6 +380,68 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D59F92BB2A784EA90063AA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Brushr iOS WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWASU9HFBU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Brushr iOS Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Brushr iOS Widget";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.Brushr-iOS-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D59F92BC2A784EA90063AA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Brushr iOS WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWASU9HFBU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Brushr iOS Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Brushr iOS Widget";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.Brushr-iOS-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		D5EAB9232A7310A50086E666 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -397,6 +571,7 @@
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Brushr/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
@@ -435,6 +610,7 @@
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Brushr/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
@@ -529,6 +705,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D59F92BD2A784EA90063AA5E /* Build configuration list for PBXNativeTarget "Brushr iOS WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D59F92BB2A784EA90063AA5E /* Debug */,
+				D59F92BC2A784EA90063AA5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D5EAB9122A7310A40086E666 /* Build configuration list for PBXProject "Brushr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
