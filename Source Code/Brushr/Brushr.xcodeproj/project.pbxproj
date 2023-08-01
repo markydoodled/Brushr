@@ -549,6 +549,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr watchOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr watchOS Widget";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -579,6 +581,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr watchOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr watchOS Widget";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
