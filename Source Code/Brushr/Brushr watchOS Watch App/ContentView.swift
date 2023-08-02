@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var customMinuteSelection = 1
-    @State var customSecondSelection = 30
+    @AppStorage("customMinuteSelection") var customMinuteSelection = 1
+    @AppStorage("customSecondSelection") var customSecondSelection = 30
     @State var showingCurrentTimer = false
     @State var disabledCustomStart = false
     @State var disabledResume = true
@@ -22,6 +22,8 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var isActive = true
     @StateObject private var healthKitManager = HealthKitManager()
+    @State var showingCustomTimer = false
+    @State var showingCustomCurrentTimer = false
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -335,6 +337,192 @@ struct ContentView: View {
         }
         .onAppear() {
             healthKitManager.requestAuthorization()
+        }
+        .onOpenURL { url in
+            guard url.scheme == "brushr" else { return }
+            if url == URL(string: "brushr://30sec") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 30
+                startTime = 30
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://1min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 60
+                startTime = 60
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://2min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 120
+                startTime = 120
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://3min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 180
+                startTime = 180
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://4min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 240
+                startTime = 240
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://5min") {
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                WKInterfaceDevice.current().play(.start)
+                timeRemaining = 300
+                startTime = 300
+                disabledResume = true
+                disabledPause = false
+                formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                showingCurrentTimer = true
+            } else if url == URL(string: "brushr://custom") {
+                showingCustomTimer = true
+            } else {
+                print("URL Error")
+            }
+        }
+        .sheet(isPresented: $showingCustomTimer) {
+            customTimer
+        }
+    }
+    var customTimer: some View {
+        ScrollView {
+            VStack {
+                Spacer()
+                Text("Minutes")
+                Stepper("\(customMinuteSelection)", value: $customMinuteSelection, in: 0...10)
+                Text("Seconds")
+                Stepper("\(customSecondSelection)", value: $customSecondSelection, in: 0...59)
+                Button(action: {
+                    let formatter = DateComponentsFormatter()
+                    formatter.allowedUnits = [.minute, .second]
+                    formatter.unitsStyle = .positional
+                    WKInterfaceDevice.current().play(.start)
+                    customMinutes = customMinuteSelection * 60
+                    timeRemaining = customMinutes + customSecondSelection
+                    startTime = customMinutes + customSecondSelection
+                    disabledResume = true
+                    disabledPause = false
+                    formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                    //showingCustomTimer = false
+                    showingCustomCurrentTimer = true
+                    //showingCurrentTimer = true
+                }) {
+                    Text("Start Timer")
+                        .bold()
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(disabledCustomStart)
+                .padding()
+                Spacer()
+            }
+            .padding(.horizontal)
+        }
+        .sheet(isPresented: $showingCustomCurrentTimer) {
+            ScrollView {
+                VStack {
+                    if timeRemaining <= 59 {
+                        Text("\(formattedTimeSeconds) Seconds")
+                            .bold()
+                            .font(.title3)
+                    } else {
+                        Text("\(formattedTimeSeconds)")
+                            .bold()
+                            .font(.largeTitle)
+                    }
+                    ProgressView(value: Double(timeRemaining), total: Double(startTime))
+                        .progressViewStyle(.linear)
+                        .padding(.bottom)
+                    Button(action: {
+                        self.timer.upstream.connect().cancel()
+                        WKInterfaceDevice.current().play(.stop)
+                        disabledPause = true
+                        disabledResume = false
+                    }) {
+                        Text("Pause")
+                            .bold()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(disabledPause)
+                    .padding(.bottom)
+                    Button(action: {
+                        WKInterfaceDevice.current().play(.start)
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        disabledPause = false
+                        disabledResume = true
+                    }) {
+                        Text("Resume")
+                            .bold()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(disabledResume)
+                    .padding(.bottom)
+                    Button(action: {
+                        WKInterfaceDevice.current().play(.failure)
+                        showingCustomCurrentTimer = false
+                    }) {
+                        Text("End")
+                            .bold()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.bottom)
+                }
+                .padding(.horizontal)
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        isActive = true
+                    } else {
+                        isActive = false
+                    }
+                }
+                .onReceive(timer) { time in
+                    guard isActive else { return }
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                        let formatter = DateComponentsFormatter()
+                        formatter.allowedUnits = [.minute, .second]
+                        formatter.unitsStyle = .positional
+                        formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                    } else {
+                        WKInterfaceDevice.current().play(.success)
+                        healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
+                        showingCustomCurrentTimer = false
+                    }
+                }
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
