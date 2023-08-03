@@ -21,4 +21,4 @@ A Toothbrushing Timer App That Syncs To The Brushing Time Apple Health App On iO
 
 1. This Project Is Free To Be Added To By The Community, If You Wish To Help, File A Issue With The Enhancement Tag
 2, Any And All Feedback Will Be Helpful For Future Development
-3. If You Wish To Report A Bug, Please Use Either The Feedback Button In The App Or Use GitHub Issues
+3. If You Wish To Report A Bug, Please Use GitHub Issues
