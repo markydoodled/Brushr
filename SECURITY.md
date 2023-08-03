@@ -8,4 +8,4 @@
 
 ## Reporting a Vulnerability
 
-If You Find A Security Vunrability, Please Log A Issue On GitHub AND Use The Feedback Button. A Fix Will Be Issued As Soon As Possible.
+If You Find A Security Vunrability, Please Log A Issue On GitHub. A Fix Will Be Issued As Soon As Possible.
