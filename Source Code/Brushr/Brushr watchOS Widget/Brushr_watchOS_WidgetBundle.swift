@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+//Bundle All Types Of watchOS Complications Into One Package
 @main
 struct Brushr_watchOS_WidgetBundle: WidgetBundle {
     var body: some Widget {

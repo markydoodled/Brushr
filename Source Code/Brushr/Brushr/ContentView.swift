@@ -9,22 +9,30 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
+    //Store Value For Custom Minute And Seconds
     @AppStorage("customMinuteSelection") var customMinuteSelection = 1
     @AppStorage("customSecondSelection") var customSecondSelection = 30
-    @State var showingCurrentTimer = false
+    //Disable UI Elements Under Some Conditions
     @State var disabledCustomStart = false
     @State var disabledResume = true
     @State var disabledPause = false
+    //Timer Tracking And Formatting UI Seconds
     @State var timeRemaining = 30
     @State var startTime = 30
     @State var customMinutes = 0
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var formattedTimeSeconds = ""
+    //Track If The App Is In The Foreground Or The Background
     @Environment(\.scenePhase) var scenePhase
     @State var isActive = true
+    //Link To The HealthKitManager Class To Save Times Back To HealthKit
     @StateObject private var healthKitManager = HealthKitManager()
+    //UI State
     @State var showingCustomTimer = false
+    @State var showingCurrentTimer = false
+    @State var showingSettings = false
     var body: some View {
+        //Pick Standard Or Custom Timers
         NavigationStack {
             ScrollView {
                 Grid {
@@ -204,16 +212,19 @@ struct ContentView: View {
                 Divider()
                 HStack {
                     Spacer()
-                    Text("Custom Timers")
+                    Text("Custom Timer")
                         .bold()
-                        .font(.title2)
+                        .font(.title)
                     Spacer()
                 }
                 HStack {
                     Spacer()
                     VStack {
                         Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
+                            .font(.title)
+                            .padding(.bottom)
                         Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
+                            .font(.title)
                         Button(action: {
                             let formatter = DateComponentsFormatter()
                             formatter.allowedUnits = [.minute, .second]
@@ -241,7 +252,8 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Brushr")
-            .onChange(of: customMinuteSelection) { min in
+            //Check If Custom Timer Min And Sec Is Above 0:00
+            .onChange(of: customMinuteSelection) {
                 if customMinuteSelection == 0 {
                     if customSecondSelection == 0 {
                         disabledCustomStart = true
@@ -252,7 +264,7 @@ struct ContentView: View {
                     disabledCustomStart = false
                 }
             }
-            .onChange(of: customSecondSelection) { sec in
+            .onChange(of: customSecondSelection) {
                 if customMinuteSelection == 0 {
                     if customSecondSelection == 0 {
                         disabledCustomStart = true
@@ -263,8 +275,21 @@ struct ContentView: View {
                     disabledCustomStart = false
                 }
             }
+            //Toolbar To Access Settings View
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {showingSettings = true}) {
+                        Image(systemName: "gearshape")
+                    }
+                    .sheet(isPresented: $showingSettings) {
+                        settings
+                    }
+                }
+            }
+            //Current Timer UI When A Timer Has Been Started
             .fullScreenCover(isPresented: $showingCurrentTimer) {
                 VStack {
+                    //Remaining Time
                     if timeRemaining <= 59 {
                         Text("\(formattedTimeSeconds) Seconds")
                             .bold()
@@ -277,49 +302,50 @@ struct ContentView: View {
                     ProgressView(value: Double(timeRemaining), total: Double(startTime))
                         .progressViewStyle(.linear)
                         .padding(.bottom)
-                    Button(action: {
-                        self.timer.upstream.connect().cancel()
-                        let systemSoundID: SystemSoundID = 1115
-                        AudioServicesPlaySystemSound(systemSoundID)
-                        disabledPause = true
-                        disabledResume = false
-                    }) {
-                        Text("Pause")
-                            .bold()
-                            .font(.title)
+                    //Pause, Play And Cancel Buttons
+                    HStack {
+                        Button(action: {
+                            self.timer.upstream.connect().cancel()
+                            let systemSoundID: SystemSoundID = 1115
+                            AudioServicesPlaySystemSound(systemSoundID)
+                            disabledPause = true
+                            disabledResume = false
+                        }) {
+                            Image(systemName: "pause.fill")
+                                .font(.largeTitle)
+                                .imageScale(.large)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(disabledPause)
+                        Button(action: {
+                            let systemSoundID: SystemSoundID = 1116
+                            AudioServicesPlaySystemSound(systemSoundID)
+                            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            disabledPause = false
+                            disabledResume = true
+                        }) {
+                            Image(systemName: "play.fill")
+                                .font(.largeTitle)
+                                .imageScale(.large)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(disabledResume)
+                        Button(action: {
+                            let systemSoundID: SystemSoundID = 1112
+                            AudioServicesPlaySystemSound(systemSoundID)
+                            showingCurrentTimer = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.largeTitle)
+                                .imageScale(.large)
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(disabledPause)
-                    .padding(.bottom)
-                    Button(action: {
-                        let systemSoundID: SystemSoundID = 1116
-                        AudioServicesPlaySystemSound(systemSoundID)
-                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                        disabledPause = false
-                        disabledResume = true
-                    }) {
-                        Text("Resume")
-                            .bold()
-                            .font(.title)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(disabledResume)
-                    .padding(.bottom)
-                    Button(action: {
-                        let systemSoundID: SystemSoundID = 1112
-                        AudioServicesPlaySystemSound(systemSoundID)
-                        showingCurrentTimer = false
-                    }) {
-                        Text("End")
-                            .bold()
-                            .font(.title)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.bottom)
                 }
                 .padding(.horizontal)
-                .onChange(of: scenePhase) { newPhase in
-                    if newPhase == .active {
+                //Monitor Scene Phase To Manage Current Timer
+                .onChange(of: scenePhase) {
+                    if scenePhase == .active {
                         isActive = true
                     } else {
                         isActive = false
@@ -342,9 +368,11 @@ struct ContentView: View {
                 }
             }
         }
+        //Check And Request HealthKit Access
         .onAppear() {
             healthKitManager.requestAuthorization()
         }
+        //Trigger Actions In App Depending On The Opened URL
         .onOpenURL { url in
             guard url.scheme == "brushr" else { return }
             if url == URL(string: "brushr://30sec") {
@@ -425,16 +453,21 @@ struct ContentView: View {
                 print("URL Error")
             }
         }
+        //Show UI For Creating A Custom Timer
         .sheet(isPresented: $showingCustomTimer) {
             customTimer
         }
     }
+    //Custom Timer UI
     var customTimer: some View {
         NavigationStack {
             VStack {
                 Spacer()
                 Stepper("\(customMinuteSelection) Minutes", value: $customMinuteSelection, in: 0...10)
+                    .font(.largeTitle)
+                    .padding(.bottom)
                 Stepper("\(customSecondSelection) Seconds", value: $customSecondSelection, in: 0...59)
+                    .font(.largeTitle)
                 Button(action: {
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -452,7 +485,7 @@ struct ContentView: View {
                 }) {
                     Text("Start Timer")
                         .bold()
-                        .font(.title)
+                        .font(.largeTitle)
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(disabledCustomStart)
@@ -460,12 +493,38 @@ struct ContentView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .navigationTitle("Custom Timers")
+            .navigationTitle("Custom Timer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {showingCustomTimer = false}) {
                         Text("Cancel")
+                    }
+                }
+            }
+        }
+    }
+    var settings: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    LabeledContent("Version", value: "1.1")
+                    LabeledContent("Build", value: "1")
+                } header: {
+                    Label("Info", systemImage: "info.circle")
+                }
+                Section {
+                    Link("GitHub Repository", destination: URL(string: "https://github.com/markydoodled/Brushr")!)
+                    Link("Portfolio", destination: URL(string: "http://markydoodled.github.io/portfolio/")!)
+                } header: {
+                    Label("Contact", systemImage: "person.crop.circle")
+                }
+            }
+            .navigationTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {showingSettings = false}) {
+                        Text("Done")
                     }
                 }
             }

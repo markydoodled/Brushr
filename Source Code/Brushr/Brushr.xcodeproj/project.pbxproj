@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D56746472BB34E7300233355 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D56746462BB34E7300233355 /* Settings.bundle */; };
 		D59F92A42A784C7C0063AA5E /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F92A32A784C7C0063AA5E /* AppIntents.swift */; };
 		D59F92AC2A784EA70063AA5E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59F92AB2A784EA70063AA5E /* WidgetKit.framework */; };
 		D59F92AE2A784EA70063AA5E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59F92AD2A784EA70063AA5E /* SwiftUI.framework */; };
@@ -93,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D56746462BB34E7300233355 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D59F92A32A784C7C0063AA5E /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		D59F92A92A784EA70063AA5E /* Brushr iOS WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Brushr iOS WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59F92AB2A784EA70063AA5E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -101,7 +103,6 @@
 		D59F92B22A784EA70063AA5E /* Brushr_iOS_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_iOS_Widget.swift; sourceTree = "<group>"; };
 		D59F92B42A784EA90063AA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D59F92B62A784EA90063AA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D59F92BE2A784EC20063AA5E /* Brushr iOS WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brushr iOS WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D59F92BF2A79754F0063AA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D59F92C42A79803B0063AA5E /* Brushr watchOS WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Brushr watchOS WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59F92C82A79803B0063AA5E /* Brushr_watchOS_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_watchOS_Widget.swift; sourceTree = "<group>"; };
@@ -183,9 +184,9 @@
 			isa = PBXGroup;
 			children = (
 				D59F92C82A79803B0063AA5E /* Brushr_watchOS_Widget.swift */,
+				D59F92D42A7980B30063AA5E /* Brushr_watchOS_WidgetBundle.swift */,
 				D59F92CA2A79803C0063AA5E /* Assets.xcassets */,
 				D59F92CC2A79803C0063AA5E /* Info.plist */,
-				D59F92D42A7980B30063AA5E /* Brushr_watchOS_WidgetBundle.swift */,
 			);
 			path = "Brushr watchOS Widget";
 			sourceTree = "<group>";
@@ -193,7 +194,6 @@
 		D5EAB90E2A7310A40086E666 = {
 			isa = PBXGroup;
 			children = (
-				D59F92BE2A784EC20063AA5E /* Brushr iOS WidgetExtension.entitlements */,
 				D5EAB9192A7310A40086E666 /* Brushr */,
 				D5EAB92E2A73B8D30086E666 /* Brushr watchOS Watch App */,
 				D59F92AF2A784EA70063AA5E /* Brushr iOS Widget */,
@@ -224,6 +224,7 @@
 				D5EAB91E2A7310A50086E666 /* Assets.xcassets */,
 				D5EAB9202A7310A50086E666 /* Preview Content */,
 				D5EAB9402A7589270086E666 /* AppIntents.swift */,
+				D56746462BB34E7300233355 /* Settings.bundle */,
 			);
 			path = Brushr;
 			sourceTree = "<group>";
@@ -342,7 +343,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					D59F92A82A784EA70063AA5E = {
 						CreatedOnToolsVersion = 14.3;
@@ -401,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5EAB9222A7310A50086E666 /* Preview Assets.xcassets in Resources */,
+				D56746472BB34E7300233355 /* Settings.bundle in Resources */,
 				D5EAB91F2A7310A50086E666 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,19 +490,21 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr iOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr iOS Widget";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.Brushr-iOS-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -519,19 +523,21 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr iOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr iOS Widget";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.Brushr-iOS-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -543,22 +549,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Brushr watchOS WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr watchOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr watchOS Widget";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.watchkitapp.Brushr-watchOS-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -566,7 +571,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -575,22 +580,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Brushr watchOS WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Brushr watchOS Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Brushr watchOS Widget";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.MSJ.Brushr.watchkitapp.Brushr-watchOS-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -598,7 +602,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -606,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -638,6 +643,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -652,14 +658,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -667,6 +673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -699,6 +706,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -707,14 +715,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -735,22 +743,24 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -774,22 +784,24 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -811,6 +823,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.MSJ.Brushr;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -818,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr.watchkitapp;
 				PRODUCT_NAME = Brushr;
 				SDKROOT = watchos;
@@ -826,7 +839,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -845,6 +858,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.MSJ.Brushr;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -852,7 +866,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MSJ.Brushr.watchkitapp;
 				PRODUCT_NAME = Brushr;
 				SDKROOT = watchos;
@@ -860,7 +874,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

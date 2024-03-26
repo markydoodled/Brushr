@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+//Setup Widget Timeline And Widget Update Functions
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
@@ -33,10 +34,12 @@ struct Provider: TimelineProvider {
     }
 }
 
+//Setup Widget Timeline Entry
 struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
+//SwiftUI Widget Views For Custom, 30 Second, 1, 2, 3, 4 And 5 minute Timers
 struct Brushr_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
     var body: some View {
@@ -135,6 +138,7 @@ struct Brushr_5_iOS_WidgetEntryView : View {
     }
 }
 
+//Package Views Into Separate Widget Entries 
 struct Brushr_iOS_Widget: Widget {
     let kind: String = "Brushr_iOS_Widget"
     var body: some WidgetConfiguration {
@@ -222,7 +226,7 @@ struct Brushr_5_iOS_Widget: Widget {
         }
         .configurationDisplayName("Start A 05:00 Timer")
         .supportedFamilies([.accessoryCircular])
-        .description("Open The App And Start A 055:00 Timer.")
+        .description("Open The App And Start A 05:00 Timer.")
     }
 }
 

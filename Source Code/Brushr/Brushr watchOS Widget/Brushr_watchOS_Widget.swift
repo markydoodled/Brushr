@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+//Setup Widget Timeline And Widget Update Functions
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
@@ -33,10 +34,12 @@ struct Provider: TimelineProvider {
     }
 }
 
+//Setup Widget Timeline Entry
 struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
+//SwiftUI Widget Views For Custom, 30 Second, 1, 2, 3, 4 And 5 minute Timers
 struct Brushr_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
@@ -121,7 +124,7 @@ struct Brushr_30_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "30.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -178,7 +181,7 @@ struct Brushr_1_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "1.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -235,7 +238,7 @@ struct Brushr_2_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "2.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -292,7 +295,7 @@ struct Brushr_3_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "3.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -349,7 +352,7 @@ struct Brushr_4_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "4.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -406,7 +409,7 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mouth")
+                Image(systemName: "5.circle")
                     .resizable()
                     .padding(.all)
                     .scaledToFit()
@@ -436,6 +439,7 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
     }
 }
 
+//Package Views Into Separate Widget Entries 
 struct Brushr_watchOS_Widget: Widget {
     let kind: String = "Brushr_watchOS_Widget"
     var body: some WidgetConfiguration {
@@ -523,7 +527,7 @@ struct Brushr_5_watchOS_Widget: Widget {
         }
         .configurationDisplayName("Start A 05:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
-        .description("Open The App And Start A 055:00 Timer.")
+        .description("Open The App And Start A 05:00 Timer.")
     }
 }
 

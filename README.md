@@ -1,6 +1,10 @@
 # Brushr
 
-A Toothbrushing Timer App That Syncs To The Brushing Time Apple Health App On iOS And Apple Watch. 
+A Toothbrushing Timer For iPhone And Apple Watch That Syncs The Brushing Time To The Apple Health App. 
+
+## App Store Link
+
+[Click Here...]()
 
 ## Features
 
@@ -9,16 +13,16 @@ A Toothbrushing Timer App That Syncs To The Brushing Time Apple Health App On iO
 - Set Of Standard Timers
 - Custom Timers
 - Sync Brushing Times To Apple Health
-- watchOS Complication Support
+- watchOS Complications
 - iOS Lock Screen Widgets
-- Siri Shortcuts Support
+- Siri Shortcuts
 
-## Releases
+## GitHub Releases
 
 [Click Here...](https://github.com/markydoodled/Brushr/releases)
 
 ## Things To Note
 
 1. This Project Is Free To Be Added To By The Community, If You Wish To Help, File A Issue With The Enhancement Tag
-2, Any And All Feedback Will Be Helpful For Future Development
+2. Any And All Feedback Will Be Helpful For Future Development
 3. If You Wish To Report A Bug, Please Use GitHub Issues

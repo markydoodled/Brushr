@@ -8,6 +8,7 @@
 import SwiftUI
 import HealthKit
 
+//App Entry Point For Main View
 @main
 struct BrushrApp: App {
     var body: some Scene {
@@ -17,6 +18,7 @@ struct BrushrApp: App {
     }
 }
 
+//Setup HealthKit Functions, Request Access, Get Health Store, Save Data To Store
 class HealthKitManager: ObservableObject {
     private var healthStore: HKHealthStore?
     

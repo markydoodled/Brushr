@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+//Bundle All Types Of iOS Widgets Into One Package
 @main
 struct Brushr_iOS_WidgetBundle: WidgetBundle {
     var body: some Widget {
