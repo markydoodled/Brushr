@@ -509,7 +509,7 @@ struct ContentView: View {
             Form {
                 Section {
                     LabeledContent("Version", value: "1.1")
-                    LabeledContent("Build", value: "1")
+                    LabeledContent("Build", value: "3")
                 } header: {
                     Label("Info", systemImage: "info.circle")
                 }
