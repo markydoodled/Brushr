@@ -4,7 +4,7 @@ A Toothbrushing Timer For iPhone And Apple Watch That Syncs The Brushing Time To
 
 ## App Store Link
 
-[Click Here...]()
+[Click Here...](https://apps.apple.com/gb/app/brushr/id6480352002)
 
 ## Features
 
