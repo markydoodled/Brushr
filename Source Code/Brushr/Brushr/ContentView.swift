@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import MessageUI
 
 struct ContentView: View {
     //Store Value For Custom Minute And Seconds
@@ -31,6 +32,9 @@ struct ContentView: View {
     @State var showingCustomTimer = false
     @State var showingCurrentTimer = false
     @State var showingSettings = false
+    //Setup Mail Sheet View And Result Trackers
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+    @State var isShowingMailView = false
     var body: some View {
         //Pick Standard Or Custom Timers
         NavigationStack {
@@ -508,12 +512,18 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 Section {
-                    LabeledContent("Version", value: "1.1")
-                    LabeledContent("Build", value: "3")
+                    LabeledContent("Version", value: "1.2")
+                    LabeledContent("Build", value: "6")
                 } header: {
                     Label("Info", systemImage: "info.circle")
                 }
                 Section {
+                    Button(action: {isShowingMailView.toggle()}) {
+                        Text("Send Feedback...")
+                    }
+                    .sheet(isPresented: $isShowingMailView) {
+                        MailView(isShowing: self.$isShowingMailView, result: self.$result)
+                    }
                     Link("GitHub Repository", destination: URL(string: "https://github.com/markydoodled/Brushr")!)
                     Link("Portfolio", destination: URL(string: "http://markydoodled.github.io/portfolio/")!)
                 } header: {
@@ -529,6 +539,49 @@ struct ContentView: View {
                 }
             }
         }
+    }
+}
+
+//Create Mail View To Send Feedback
+struct MailView: UIViewControllerRepresentable {
+    @Binding var isShowing: Bool
+    @Binding var result: Result<MFMailComposeResult, Error>?
+    
+    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+        @Binding var isShowing: Bool
+        @Binding var result: Result<MFMailComposeResult, Error>?
+        
+        init(isShowing: Binding<Bool>, result: Binding<Result<MFMailComposeResult, Error>?>) {
+            _isShowing = isShowing
+            _result = result
+        }
+
+        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+            defer {
+                isShowing = false
+            }
+            
+            guard error == nil else {
+                self.result = .failure(error!)
+                return
+            }
+            
+            self.result = .success(result)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(isShowing: $isShowing, result: $result)
+    }
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
+        let vc = MFMailComposeViewController()
+        vc.mailComposeDelegate = context.coordinator
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: UIViewControllerRepresentableContext<MailView>) {
+
     }
 }
 
