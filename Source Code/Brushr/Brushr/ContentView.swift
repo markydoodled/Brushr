@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import MessageUI
+import UserNotifications
 
 struct ContentView: View {
     //Store Value For Custom Minute And Seconds
@@ -32,9 +33,15 @@ struct ContentView: View {
     @State var showingCustomTimer = false
     @State var showingCurrentTimer = false
     @State var showingSettings = false
+    @State var showingPermissionRequested = false
+    @State var showingNotificationsScheduled = false
+    @State var showingNotificationsCleared = false
     //Setup Mail Sheet View And Result Trackers
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
+    //Times For Reminder Notifications
+    @AppStorage("morningTime") var morningTime = Date.now
+    @AppStorage("eveningTime") var eveningTime = Date.now
     var body: some View {
         //Pick Standard Or Custom Timers
         NavigationStack {
@@ -375,6 +382,13 @@ struct ContentView: View {
         //Check And Request HealthKit Access
         .onAppear() {
             healthKitManager.requestAuthorization()
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if success {
+                    print("Authorised")
+                } else if let error {
+                    print(error.localizedDescription)
+                }
+            }
         }
         //Trigger Actions In App Depending On The Opened URL
         .onOpenURL { url in
@@ -512,6 +526,85 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 Section {
+                    DatePicker("Morning", selection: $morningTime, displayedComponents: .hourAndMinute)
+                    Button(action: {
+                        print("morningTime: \(morningTime)")
+                        let hour = Calendar.current.dateComponents([.hour], from: morningTime)
+                        print("Hour: \(hour)")
+                        let min = Calendar.current.dateComponents([.minute], from: morningTime)
+                        print("Min: \(min)")
+                        
+                        let content = UNMutableNotificationContent()
+                        content.title = "Time To Brush"
+                        content.subtitle = "Remember To Brush Your Teeth This Morning!"
+                        content.sound = UNNotificationSound.default
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: hour.hour, minute: min.minute), repeats: true)
+                        print("Next Trigger: \(trigger.nextTriggerDate() ?? Date())")
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request)
+                        
+                        showingNotificationsScheduled = true
+                    }) {
+                        Text("Schedule Notification")
+                    }
+                    DatePicker("Evening", selection: $eveningTime, displayedComponents: .hourAndMinute)
+                    Button(action: {
+                        print("eveningTime: \(eveningTime)")
+                        let hour = Calendar.current.dateComponents([.hour], from: eveningTime)
+                        print("Hour: \(hour)")
+                        let min = Calendar.current.dateComponents([.minute], from: eveningTime)
+                        print("Min: \(min)")
+                        
+                        let content2 = UNMutableNotificationContent()
+                        content2.title = "Time To Brush"
+                        content2.subtitle = "Remember To Brush Your Teeth This Evening!"
+                        content2.sound = UNNotificationSound.default
+                        let trigger2 = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: hour.hour, minute: min.minute), repeats: true)
+                        print("Next Trigger: \(trigger2.nextTriggerDate() ?? Date())")
+                        let request2 = UNNotificationRequest(identifier: UUID().uuidString, content: content2, trigger: trigger2)
+                        UNUserNotificationCenter.current().add(request2)
+                        
+                        showingNotificationsScheduled = true
+                    }) {
+                        Text("Schedule Notification")
+                    }
+                    .alert("Notifications Scheduled", isPresented: $showingNotificationsScheduled) {
+                        Button(action: {}) {
+                            Text("Close")
+                        }
+                    }
+                    Button(action: {
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                        showingNotificationsCleared = true
+                    }) {
+                        Text("Clear Upcoming")
+                    }
+                    .alert("Upcoming Notifications Cleared", isPresented: $showingNotificationsCleared) {
+                        Button(action: {}) {
+                            Text("Close")
+                        }
+                    }
+                    Button(action: {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                            if success {
+                                print("Authorised")
+                            } else if let error {
+                                print(error.localizedDescription)
+                            }
+                        }
+                        showingPermissionRequested = true
+                    }) {
+                        Text("Request Permissions")
+                    }
+                    .alert("Notification Permissions Requested", isPresented: $showingPermissionRequested) {
+                        Button(action: {}) {
+                            Text("Close")
+                        }
+                    }
+                } header: {
+                    Label("Notifications", systemImage: "bell.badge")
+                }
+                Section {
                     LabeledContent("Version", value: "1.2")
                     LabeledContent("Build", value: "6")
                 } header: {
@@ -577,11 +670,24 @@ struct MailView: UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
         vc.mailComposeDelegate = context.coordinator
+        vc.setSubject("Brushr Feedback")
+        vc.setToRecipients(["markhoward2005@gmail.com"])
+        vc.setMessageBody("Please Fill Out All Relevant Sections:\nReport A Bug - \nRate The App - \nSuggest An Improvment - \n", isHTML: false)
         return vc
     }
 
     func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: UIViewControllerRepresentableContext<MailView>) {
 
+    }
+}
+
+extension Date: RawRepresentable {
+    public var rawValue: String {
+        self.timeIntervalSinceReferenceDate.description
+    }
+    
+    public init?(rawValue: String) {
+        self = Date(timeIntervalSinceReferenceDate: Double(rawValue) ?? 0.0)
     }
 }
 
