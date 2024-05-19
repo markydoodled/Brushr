@@ -508,7 +508,15 @@ struct ContentView: View {
                     Label("Brushing Stats", systemImage: "list.bullet.clipboard")
                 }
                 Section {
-                    
+                    Link(destination: URL(string: "https://www.nhs.uk/nhs-services/dentists/")!) {
+                        Label("NHS Dentists", systemImage: "heart.circle")
+                    }
+                    Link(destination: URL(string: "https://www.bda.org/")!) {
+                        Label("British Dental Association", systemImage: "building.columns")
+                    }
+                    Link(destination: URL(string: "https://www.gdc-uk.org/")!) {
+                        Label("General Dental Council", systemImage: "person.3")
+                    }
                 } header: {
                     Label("Useful Links", systemImage: "link")
                 }
@@ -724,8 +732,6 @@ struct ContentView: View {
                     timesBrushed = String("\(samples.count.formatted()) Times")
                     let start = sample.startDate
                     let end = sample.endDate
-                    let startTimeInt = start.timeIntervalSinceNow
-                    let endTimeInt = end.timeIntervalSinceNow
                     let duration = end.timeIntervalSince(start)
                     totalDuration += duration
                     totalTimeBrushing = String("\(totalDuration.formatted()) Minutes")
