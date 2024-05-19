@@ -728,7 +728,6 @@ struct ContentView: View {
             var totalDuration: TimeInterval = TimeInterval()
             for sample in samples {
                 if let sample = sample as? HKCategorySample {
-                    let dateString = DateFormatter.localizedString(from: sample.startDate, dateStyle: .short, timeStyle: .short)
                     timesBrushed = String("\(samples.count.formatted()) Times")
                     let start = sample.startDate
                     let end = sample.endDate
