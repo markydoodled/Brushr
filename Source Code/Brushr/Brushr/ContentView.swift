@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 import MessageUI
 import UserNotifications
+import HealthKit
 
 struct ContentView: View {
     //Store Value For Custom Minute And Seconds
@@ -32,17 +33,42 @@ struct ContentView: View {
     //UI State
     @State var showingCustomTimer = false
     @State var showingCurrentTimer = false
-    @State var showingSettings = false
     @State var showingPermissionRequested = false
     @State var showingNotificationsScheduled = false
     @State var showingNotificationsCleared = false
+    @State var tabSelection = 1
     //Setup Mail Sheet View And Result Trackers
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     //Times For Reminder Notifications
     @AppStorage("morningTime") var morningTime = Date.now
     @AppStorage("eveningTime") var eveningTime = Date.now
+    //Stats Values
+    @State var timesBrushed = ""
+    @State var averageTimeBrushing = ""
+    @State var totalTimeBrushing = ""
     var body: some View {
+        //Tab Bar View To Swap Screens
+        TabView(selection: $tabSelection) {
+            home
+                .tag(1)
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            info
+                .tag(2)
+                .tabItem {
+                    Label("Information", systemImage: "info.circle")
+                }
+            settings
+                .tag(3)
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
+        }
+    }
+    //Home View
+    var home: some View {
         //Pick Standard Or Custom Timers
         NavigationStack {
             ScrollView {
@@ -286,17 +312,6 @@ struct ContentView: View {
                     disabledCustomStart = false
                 }
             }
-            //Toolbar To Access Settings View
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {showingSettings = true}) {
-                        Image(systemName: "gearshape")
-                    }
-                    .sheet(isPresented: $showingSettings) {
-                        settings
-                    }
-                }
-            }
             //Current Timer UI When A Timer Has Been Started
             .fullScreenCover(isPresented: $showingCurrentTimer) {
                 VStack {
@@ -476,6 +491,41 @@ struct ContentView: View {
             customTimer
         }
     }
+    var info: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    LabeledContent("Time Spent Brushing") {
+                        Text("\(totalTimeBrushing)")
+                    }
+                    LabeledContent("Times Brushed") {
+                        Text("\(timesBrushed)")
+                    }
+                    LabeledContent("Average Brushing Time") {
+                        Text("\(averageTimeBrushing)")
+                    }
+                } header: {
+                    Label("Brushing Stats", systemImage: "list.bullet.clipboard")
+                }
+                Section {
+                    
+                } header: {
+                    Label("Useful Links", systemImage: "link")
+                }
+            }
+            .navigationTitle("Information")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {fetchAndPrintToothbrushingData()}) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+            }
+        }
+        .onAppear() {
+            fetchAndPrintToothbrushingData()
+        }
+    }
     //Custom Timer UI
     var customTimer: some View {
         NavigationStack {
@@ -624,11 +674,63 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Settings")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {showingSettings = false}) {
-                        Text("Done")
-                    }
+        }
+    }
+    func fetchToothbrushingData(completion: @escaping ([HKSample]?, Error?) -> Void) {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion(nil, NSError(domain: "com.MSJ.Brushr", code: 1, userInfo: [NSLocalizedDescriptionKey: "HealthKit Is Not Available."]))
+            return
+        }
+        
+        let toothbrushingType = HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!
+        
+        let healthStore = HKHealthStore()
+        healthStore.requestAuthorization(toShare: nil, read: [toothbrushingType]) { (success, error) in
+            guard success else {
+                completion(nil, error)
+                return
+            }
+            
+            let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
+            
+            let query = HKSampleQuery(sampleType: toothbrushingType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in
+                guard let samples = samples else {
+                    completion(nil, error)
+                    return
+                }
+                
+                completion(samples, nil)
+            }
+            
+            healthStore.execute(query)
+        }
+    }
+    func fetchAndPrintToothbrushingData() {
+        fetchToothbrushingData { (samples, error) in
+            if let error = error {
+                print("Error Fetching Toothbrushing Data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let samples = samples else {
+                print("No Toothbrushing Data Available.")
+                return
+            }
+            
+            var totalDuration: TimeInterval = TimeInterval()
+            for sample in samples {
+                if let sample = sample as? HKCategorySample {
+                    let dateString = DateFormatter.localizedString(from: sample.startDate, dateStyle: .short, timeStyle: .short)
+                    timesBrushed = String("\(samples.count.formatted()) Times")
+                    let start = sample.startDate
+                    let end = sample.endDate
+                    let startTimeInt = start.timeIntervalSinceNow
+                    let endTimeInt = end.timeIntervalSinceNow
+                    let duration = end.timeIntervalSince(start)
+                    totalDuration += duration
+                    totalTimeBrushing = String("\(totalDuration.formatted()) Minutes")
+                    let avgDuration = totalDuration / Double(samples.count)
+                    averageTimeBrushing = String("\(avgDuration.formatted()) Seconds")
                 }
             }
         }
