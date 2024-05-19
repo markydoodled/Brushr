@@ -676,7 +676,7 @@ struct ContentView: View {
                         MailView(isShowing: self.$isShowingMailView, result: self.$result)
                     }
                     Link("GitHub Repository", destination: URL(string: "https://github.com/markydoodled/Brushr")!)
-                    Link("Portfolio", destination: URL(string: "http://markydoodled.github.io/portfolio/")!)
+                    Link("Portfolio", destination: URL(string: "http://markydoodled.com")!)
                 } header: {
                     Label("Contact", systemImage: "person.crop.circle")
                 }
