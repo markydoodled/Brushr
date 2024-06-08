@@ -682,7 +682,7 @@ struct ContentView: View {
                 }
                 Section {
                     LabeledContent("Version", value: "1.2")
-                    LabeledContent("Build", value: "6")
+                    LabeledContent("Build", value: "8")
                 } header: {
                     Label("Info", systemImage: "info.circle")
                 }
