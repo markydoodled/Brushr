@@ -288,6 +288,12 @@ struct ContentView: View {
                         }
                         //Restart The Timer
                         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    case .inactive:
+                        isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
                     default:
                         break
                     }
@@ -469,6 +475,12 @@ struct ContentView: View {
                         }
                         //Restart The Timer
                         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    case .inactive:
+                        isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
                     default:
                         break
                     }
