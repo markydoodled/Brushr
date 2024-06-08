@@ -10,7 +10,7 @@ import AppIntents
 //Setup Intents For 30 Second, 1, 2, 3, 4 And 5 Minute And Custom Timers, Get Title, Description, Set Minute And Second Parameters And Write Results To Health Store
 struct CustomTimerIntent: AppIntent {
     static var title: LocalizedStringResource = "Log Custom Brushing Time"
-    static var description = IntentDescription("Log A Custom Brushing Time In The Apple Health App.")
+    static var description = IntentDescription("Log A Custom Brushing Time In The Health App.")
     
     @Parameter(title: "Minutes")
     var minutes: Int?
@@ -36,7 +36,7 @@ struct CustomTimerIntent: AppIntent {
 
 struct Timer30Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 00:30 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 00:30 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 00:30 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
@@ -50,7 +50,7 @@ struct Timer30Intent: AppIntent {
 
 struct Timer1Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 01:00 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 01:00 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 01:00 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
@@ -64,7 +64,7 @@ struct Timer1Intent: AppIntent {
 
 struct Timer2Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 02:00 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 02:00 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 02:00 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
@@ -78,7 +78,7 @@ struct Timer2Intent: AppIntent {
 
 struct Timer3Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 03:00 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 03:00 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 03:00 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
@@ -92,7 +92,7 @@ struct Timer3Intent: AppIntent {
 
 struct Timer4Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 04:00 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 04:00 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 04:00 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
@@ -106,7 +106,7 @@ struct Timer4Intent: AppIntent {
 
 struct Timer5Intent: AppIntent {
     static var title: LocalizedStringResource = "Log A 05:00 Brushing Time"
-    static var description = IntentDescription("Log A Brushing Time For 05:00 In The Apple Health App.")
+    static var description = IntentDescription("Log A Brushing Time For 05:00 In The Health App.")
 
     @MainActor
     func perform() async throws -> some ProvidesDialog {
