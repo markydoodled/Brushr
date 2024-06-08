@@ -446,6 +446,9 @@ struct Brushr_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://custom"))
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A Custom Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -459,6 +462,9 @@ struct Brushr_30_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_30_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://30sec")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 00:30 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -472,6 +478,9 @@ struct Brushr_1_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_1_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://1min")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 01:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -485,6 +494,9 @@ struct Brushr_2_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_2_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://2min")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 02:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -498,6 +510,9 @@ struct Brushr_3_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_3_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://3min")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 03:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -511,6 +526,9 @@ struct Brushr_4_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_4_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://4min")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 04:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
@@ -524,6 +542,9 @@ struct Brushr_5_watchOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Brushr_5_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://5min")!)
+                .containerBackground(for: .widget) {
+                    Color.accentColor
+                }
         }
         .configurationDisplayName("Start A 05:00 Timer")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
