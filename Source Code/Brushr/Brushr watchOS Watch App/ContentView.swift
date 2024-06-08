@@ -11,6 +11,7 @@ struct ContentView: View {
     //Track If The App Is In The Foreground Or The Background
     @Environment(\.scenePhase) var scenePhase
     @State var isActive = true
+    @State var backgroundTime: Date?
     //Store Vertical Tab View Selection
     @State var tabSelection = 1
     //Store Value For Custom Minute And Seconds
@@ -271,10 +272,30 @@ struct ContentView: View {
                 .padding(.horizontal)
                 //Monitor Scene Phase And Manage The Current Timer
                 .onChange(of: scenePhase) {
-                    if scenePhase == .active {
-                        isActive = true
-                    } else {
+                    switch scenePhase {
+                    case .background:
                         isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
+                    case .active:
+                        isActive = true
+                        //Calculate The Time Difference And Subtract It From timeRemaining
+                        if let backgroundTime = backgroundTime {
+                            let timeDifference = Int(Date().timeIntervalSince(backgroundTime))
+                            timeRemaining -= timeDifference
+                        }
+                        //Restart The Timer
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    case .inactive:
+                        isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
+                    default:
+                        break
                     }
                 }
                 .onReceive(timer) { time in
@@ -438,10 +459,30 @@ struct ContentView: View {
             }
                 .padding(.horizontal)
                 .onChange(of: scenePhase) {
-                    if scenePhase == .active {
-                        isActive = true
-                    } else {
+                    switch scenePhase {
+                    case .background:
                         isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
+                    case .active:
+                        isActive = true
+                        //Calculate The Time Difference And Subtract It From timeRemaining
+                        if let backgroundTime = backgroundTime {
+                            let timeDifference = Int(Date().timeIntervalSince(backgroundTime))
+                            timeRemaining -= timeDifference
+                        }
+                        //Restart The Timer
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    case .inactive:
+                        isActive = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
+                    default:
+                        break
                     }
                 }
                 .onReceive(timer) { time in

@@ -27,6 +27,7 @@ struct ContentView: View {
     @State var formattedTimeSeconds = ""
     //Track If The App Is In The Foreground Or The Background
     @Environment(\.scenePhase) var scenePhase
+    @State var backgroundTime: Date?
     @State var isActive = true
     //Link To The HealthKitManager Class To Save Times Back To HealthKit
     @StateObject private var healthKitManager = HealthKitManager()
@@ -371,14 +372,31 @@ struct ContentView: View {
                 .padding(.horizontal)
                 //Monitor Scene Phase To Manage Current Timer
                 .onChange(of: scenePhase) {
-                    if scenePhase == .active {
-                        isActive = true
-                    } else {
+                    switch scenePhase {
+                    case .background:
                         isActive = false
+                        UIApplication.shared.isIdleTimerDisabled = false
+                        //Store The Time When The App Goes To The Background
+                        backgroundTime = Date()
+                        //Stop The Timer
+                        timer.upstream.connect().cancel()
+                    case .active:
+                        isActive = true
+                        UIApplication.shared.isIdleTimerDisabled = true
+                        //Calculate The Time Difference And Subtract It From timeRemaining
+                        if let backgroundTime = backgroundTime {
+                            let timeDifference = Int(Date().timeIntervalSince(backgroundTime))
+                            timeRemaining -= timeDifference
+                        }
+                        //Restart The Timer
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    default:
+                        break
                     }
                 }
                 .onReceive(timer) { time in
                     guard isActive else { return }
+                    UIApplication.shared.isIdleTimerDisabled = true
                     if timeRemaining > 0 {
                         timeRemaining -= 1
                         let formatter = DateComponentsFormatter()
@@ -779,7 +797,7 @@ struct MailView: UIViewControllerRepresentable {
         vc.mailComposeDelegate = context.coordinator
         vc.setSubject("Brushr Feedback")
         vc.setToRecipients(["markhoward2005@gmail.com"])
-        vc.setMessageBody("Please Fill Out All Relevant Sections:\nReport A Bug - \nRate The App - \nSuggest An Improvment - \n", isHTML: false)
+        vc.setMessageBody("Please Fill Out All Relevant Sections:\nReport A Bug - \nRate The App - \nSuggest An Improvement - \n", isHTML: false)
         return vc
     }
 

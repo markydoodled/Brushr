@@ -109,6 +109,7 @@
 		D59F92CA2A79803C0063AA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D59F92CC2A79803C0063AA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D59F92D42A7980B30063AA5E /* Brushr_watchOS_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brushr_watchOS_WidgetBundle.swift; sourceTree = "<group>"; };
+		D5DEEDF72C14A92D00B33270 /* Brushr-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Brushr-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D5EAB9172A7310A40086E666 /* Brushr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brushr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EAB91A2A7310A40086E666 /* BrushrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushrApp.swift; sourceTree = "<group>"; };
 		D5EAB91C2A7310A40086E666 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 		D5EAB92E2A73B8D30086E666 /* Brushr watchOS Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				D5DEEDF72C14A92D00B33270 /* Brushr-watchOS-Watch-App-Info.plist */,
 				D5EAB93F2A73B8FD0086E666 /* Brushr watchOS Watch App.entitlements */,
 				D5EAB92F2A73B8D30086E666 /* Brushr_watchOSApp.swift */,
 				D5EAB9312A73B8D30086E666 /* ContentView.swift */,
@@ -821,6 +823,7 @@
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Brushr-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
@@ -856,6 +859,7 @@
 				DEVELOPMENT_TEAM = ZWASU9HFBU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Brushr-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "To Read The Data In The Heath App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "To Write Data To The Health App, You Must Allow Access.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© Mark Howard 2024";
