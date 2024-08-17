@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct ContentView: View {
     //Track If The App Is In The Foreground Or The Background
@@ -19,6 +20,8 @@ struct ContentView: View {
     @AppStorage("customSecondSelection") var customSecondSelection = 30
     //Link To The HealthKitManager Class To Save Times Back To HealthKit
     @StateObject private var healthKitManager = HealthKitManager()
+    //Link To Workout Manager
+    @StateObject var workoutManager = WorkoutManager()
     //UI State
     @State var showingCustomTimer = false
     @State var showingCustomCurrentTimer = false
@@ -38,6 +41,7 @@ struct ContentView: View {
         NavigationStack {
             TabView(selection: $tabSelection) {
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -67,6 +71,7 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(1)
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -96,6 +101,7 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(2)
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -125,6 +131,7 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(3)
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -154,6 +161,7 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(4)
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -183,6 +191,7 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(5)
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -261,6 +270,8 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                         .disabled(disabledResume)
                         Button(action: {
+                            workoutManager.endWorkout()
+                            self.timer.upstream.connect().cancel()
                             WKInterfaceDevice.current().play(.failure)
                             showingCurrentTimer = false
                         }) {
@@ -307,6 +318,8 @@ struct ContentView: View {
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                     } else {
+                        workoutManager.endWorkout()
+                        self.timer.upstream.connect().cancel()
                         WKInterfaceDevice.current().play(.success)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCurrentTimer = false
@@ -324,6 +337,7 @@ struct ContentView: View {
         .onOpenURL { url in
             guard url.scheme == "brushr" else { return }
             if url == URL(string: "brushr://30sec") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -335,6 +349,7 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://1min") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -346,6 +361,7 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://2min") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -357,6 +373,7 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://3min") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -368,6 +385,7 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://4min") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -379,6 +397,7 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://5min") {
+                workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
                 formatter.unitsStyle = .positional
@@ -449,6 +468,8 @@ struct ContentView: View {
                     .buttonStyle(.borderedProminent)
                     .disabled(disabledResume)
                     Button(action: {
+                        workoutManager.endWorkout()
+                        self.timer.upstream.connect().cancel()
                         WKInterfaceDevice.current().play(.failure)
                         showingCustomCurrentTimer = false
                     }) {
@@ -494,6 +515,8 @@ struct ContentView: View {
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                     } else {
+                        workoutManager.endWorkout()
+                        self.timer.upstream.connect().cancel()
                         WKInterfaceDevice.current().play(.success)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCustomCurrentTimer = false
@@ -505,6 +528,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(action: {
+                    workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
                     formatter.unitsStyle = .positional
@@ -529,5 +553,59 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+class WorkoutManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDelegate {
+    let healthStore = HKHealthStore()
+    var session: HKWorkoutSession?
+    var builder: HKLiveWorkoutBuilder?
+    
+    func startWorkout() {
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .other
+        configuration.locationType = .unknown
+        
+        do {
+            session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
+            builder = session?.associatedWorkoutBuilder()
+
+            session?.delegate = self
+            builder?.delegate = self
+            
+            builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
+            
+            session?.startActivity(with: Date())
+            builder?.beginCollection(withStart: Date(), completion: { success, error in
+                print("Error Begining Collection")
+            })
+        } catch {
+            print("Error Building Workout Session")
+        }
+    }
+    
+    func endWorkout() {
+        session?.end()
+        builder?.endCollection(withEnd: Date()) { (success, error) in
+            self.builder?.finishWorkout { (workout, error) in
+                print("Error Finishing Workout")
+            }
+        }
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        print("Error Workout State Change")
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
+        print("Error Workout Failed")
+    }
+
+    func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
+        print("Error Collecting Workout Types")
+    }
+    
+    func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
+        print("Error Collecting Workout Events")
     }
 }
