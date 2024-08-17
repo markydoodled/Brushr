@@ -31,8 +31,8 @@ class HealthKitManager: ObservableObject {
     func requestAuthorization() {
         guard let healthStore = healthStore else { return }
         
-        let typesToWrite: Set<HKSampleType> = [HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!]
-        let typesToRead: Set<HKObjectType> = [HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!]
+        let typesToWrite: Set<HKSampleType> = [HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!, HKQuantityType.workoutType()]
+        let typesToRead: Set<HKObjectType> = [HKObjectType.categoryType(forIdentifier: .toothbrushingEvent)!, HKQuantityType.workoutType()]
         
         healthStore.requestAuthorization(toShare: typesToWrite, read: typesToRead) { (success, error) in
             if !success {

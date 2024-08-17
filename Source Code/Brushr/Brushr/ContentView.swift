@@ -358,6 +358,7 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                         .disabled(disabledResume)
                         Button(action: {
+                            self.timer.upstream.connect().cancel()
                             let systemSoundID: SystemSoundID = 1112
                             AudioServicesPlaySystemSound(systemSoundID)
                             showingCurrentTimer = false
@@ -404,6 +405,7 @@ struct ContentView: View {
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                     } else {
+                        self.timer.upstream.connect().cancel()
                         let systemSoundID: SystemSoundID = 1111
                         AudioServicesPlaySystemSound(systemSoundID)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
@@ -681,8 +683,8 @@ struct ContentView: View {
                     Label("Notifications", systemImage: "bell.badge")
                 }
                 Section {
-                    LabeledContent("Version", value: "1.2")
-                    LabeledContent("Build", value: "9")
+                    LabeledContent("Version", value: "1.3")
+                    LabeledContent("Build", value: "12")
                 } header: {
                     Label("Info", systemImage: "info.circle")
                 }
@@ -751,7 +753,7 @@ struct ContentView: View {
                     let end = sample.endDate
                     let duration = end.timeIntervalSince(start)
                     totalDuration += duration
-                    totalTimeBrushing = String("\(totalDuration.formatted()) Minutes")
+                    totalTimeBrushing = String("\(Int(totalDuration).formatted()) Minutes")
                     let avgDuration = totalDuration / Double(samples.count)
                     averageTimeBrushing = String("\(avgDuration.formatted()) Seconds")
                 }
