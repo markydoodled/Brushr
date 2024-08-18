@@ -42,13 +42,28 @@ struct SimpleEntry: TimelineEntry {
 //SwiftUI Widget Views For Custom, 30 Second, 1, 2, 3, 4 And 5 minute Timers
 struct Brushr_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("Custom")
-                    .font(.caption)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("Custom")
+                        .font(.caption)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("Custom")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -56,13 +71,28 @@ struct Brushr_iOS_WidgetEntryView : View {
 
 struct Brushr_30_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("00:30")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("00:30")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("00:30")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -70,13 +100,28 @@ struct Brushr_30_iOS_WidgetEntryView : View {
 
 struct Brushr_1_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("01:00")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("01:00")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("01:00")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -84,13 +129,28 @@ struct Brushr_1_iOS_WidgetEntryView : View {
 
 struct Brushr_2_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("02:00")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("02:00")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("02:00")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -98,13 +158,28 @@ struct Brushr_2_iOS_WidgetEntryView : View {
 
 struct Brushr_3_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("03:00")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("03:00")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("03:00")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -112,13 +187,28 @@ struct Brushr_3_iOS_WidgetEntryView : View {
 
 struct Brushr_4_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("04:00")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("04:00")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("04:00")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -126,13 +216,28 @@ struct Brushr_4_iOS_WidgetEntryView : View {
 
 struct Brushr_5_iOS_WidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack {
-                Image(systemName: "mouth")
-                Text("05:00")
-                    .font(.callout)
+        if widgetFamily == .accessoryCircular {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack {
+                    Image(systemName: "mouth")
+                    Text("05:00")
+                        .font(.callout)
+                }
+            }
+        } else if widgetFamily == .systemSmall {
+            ZStack {
+                Rectangle()
+                    .scaledToFill()
+                    .foregroundStyle(.accent)
+                VStack {
+                    Image(systemName: "mouth")
+                        .imageScale(.large)
+                    Text("05:00")
+                        .font(.title3)
+                }
             }
         }
     }
@@ -146,11 +251,11 @@ struct Brushr_iOS_Widget: Widget {
             Brushr_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://custom")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A Custom Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A Custom Timer.")
     }
 }
@@ -162,11 +267,11 @@ struct Brushr_30_iOS_Widget: Widget {
             Brushr_30_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://30sec")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 00:30 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 00:30 Timer.")
     }
 }
@@ -178,11 +283,11 @@ struct Brushr_1_iOS_Widget: Widget {
             Brushr_1_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://1min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 01:00 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 01:00 Timer.")
     }
 }
@@ -194,11 +299,11 @@ struct Brushr_2_iOS_Widget: Widget {
             Brushr_2_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://2min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 02:00 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 02:00 Timer.")
     }
 }
@@ -210,11 +315,11 @@ struct Brushr_3_iOS_Widget: Widget {
             Brushr_3_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://3min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 03:00 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 03:00 Timer.")
     }
 }
@@ -226,11 +331,11 @@ struct Brushr_4_iOS_Widget: Widget {
             Brushr_4_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://4min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 04:00 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 04:00 Timer.")
     }
 }
@@ -242,11 +347,11 @@ struct Brushr_5_iOS_Widget: Widget {
             Brushr_5_iOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://5min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color.orange
                 }
         }
         .configurationDisplayName("Start A 05:00 Timer")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.accessoryCircular, .systemSmall])
         .description("Open The App And Start A 05:00 Timer.")
     }
 }
