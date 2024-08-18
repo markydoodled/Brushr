@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import ActivityKit
 
 //Setup Widget Timeline And Widget Update Functions
 struct Provider: TimelineProvider {
@@ -61,8 +62,10 @@ struct Brushr_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("Custom")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -90,8 +93,10 @@ struct Brushr_30_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("00:30")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -119,8 +124,10 @@ struct Brushr_1_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("01:00")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -148,8 +155,10 @@ struct Brushr_2_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("02:00")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -177,8 +186,10 @@ struct Brushr_3_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("03:00")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -206,8 +217,10 @@ struct Brushr_4_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("04:00")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }
@@ -235,8 +248,10 @@ struct Brushr_5_iOS_WidgetEntryView : View {
                 VStack {
                     Image(systemName: "mouth")
                         .imageScale(.large)
+                        .foregroundStyle(.white)
                     Text("05:00")
                         .font(.title3)
+                        .foregroundStyle(.white)
                 }
             }
         }

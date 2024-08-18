@@ -753,9 +753,9 @@ struct ContentView: View {
                     let end = sample.endDate
                     let duration = end.timeIntervalSince(start)
                     totalDuration += duration
-                    totalTimeBrushing = String("\(Int(totalDuration).formatted()) Minutes")
+                    totalTimeBrushing = String("\(Int(totalDuration / 60).formatted()) Minutes")
                     let avgDuration = totalDuration / Double(samples.count)
-                    averageTimeBrushing = String("\(avgDuration.formatted()) Seconds")
+                    averageTimeBrushing = String("\(Int(avgDuration).formatted()) Seconds")
                 }
             }
         }
