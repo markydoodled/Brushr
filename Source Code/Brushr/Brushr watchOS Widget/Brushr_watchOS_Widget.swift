@@ -44,16 +44,7 @@ struct Brushr_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -64,7 +55,10 @@ struct Brushr_watchOS_WidgetEntryView : View {
                         Text("Custom")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("Custom", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "mouth")
@@ -77,7 +71,7 @@ struct Brushr_watchOS_WidgetEntryView : View {
                         Text("Custom")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -88,11 +82,6 @@ struct Brushr_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("Custom", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -101,16 +90,7 @@ struct Brushr_30_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -121,7 +101,10 @@ struct Brushr_30_watchOS_WidgetEntryView : View {
                         Text("00:30")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("00:30", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "30.circle")
@@ -134,7 +117,7 @@ struct Brushr_30_watchOS_WidgetEntryView : View {
                         Text("00:30")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -145,11 +128,6 @@ struct Brushr_30_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("00:30", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -158,16 +136,7 @@ struct Brushr_1_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -178,7 +147,10 @@ struct Brushr_1_watchOS_WidgetEntryView : View {
                         Text("01:00")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("01:00", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "1.circle")
@@ -191,7 +163,7 @@ struct Brushr_1_watchOS_WidgetEntryView : View {
                         Text("01:00")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -202,11 +174,6 @@ struct Brushr_1_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("01:00", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -215,16 +182,7 @@ struct Brushr_2_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -235,7 +193,10 @@ struct Brushr_2_watchOS_WidgetEntryView : View {
                         Text("02:00")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("02:00", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "2.circle")
@@ -248,7 +209,7 @@ struct Brushr_2_watchOS_WidgetEntryView : View {
                         Text("02:00")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -259,11 +220,6 @@ struct Brushr_2_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("02:00", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -272,16 +228,7 @@ struct Brushr_3_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -292,7 +239,10 @@ struct Brushr_3_watchOS_WidgetEntryView : View {
                         Text("03:00")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("03:00", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "3.circle")
@@ -305,7 +255,7 @@ struct Brushr_3_watchOS_WidgetEntryView : View {
                         Text("03:00")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -316,11 +266,6 @@ struct Brushr_3_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("03:00", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -329,16 +274,7 @@ struct Brushr_4_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -349,7 +285,10 @@ struct Brushr_4_watchOS_WidgetEntryView : View {
                         Text("04:00")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("04:00", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "4.circle")
@@ -362,7 +301,7 @@ struct Brushr_4_watchOS_WidgetEntryView : View {
                         Text("04:00")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -373,11 +312,6 @@ struct Brushr_4_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("04:00", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -386,16 +320,7 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            Text("N/A")
-        case .systemMedium:
-            Text("N/A")
-        case .systemLarge:
-            Text("N/A")
-        case .systemExtraLarge:
-            Text("N/A")
-        case .accessoryCorner:
+        if widgetFamily == .accessoryCorner {
             VStack {
                 Image(systemName: "mouth")
                     .resizable()
@@ -406,7 +331,10 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
                         Text("05:00")
                     }
             }
-        case .accessoryCircular:
+        } else if widgetFamily == .accessoryInline {
+            Label("05:00", systemImage: "mouth")
+                .foregroundColor(.orange)
+        } else if widgetFamily == .accessoryCircular {
             ZStack {
                 AccessoryWidgetBackground()
                 Image(systemName: "5.circle")
@@ -419,7 +347,7 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
                         Text("05:00")
                     }
             }
-        case .accessoryRectangular:
+        } else if widgetFamily == .accessoryRectangular {
             HStack {
                 VStack(alignment: .leading) {
                     Label("Brushr", systemImage: "mouth")
@@ -430,11 +358,6 @@ struct Brushr_5_watchOS_WidgetEntryView : View {
                 }
                 Spacer()
             }
-        case .accessoryInline:
-            Label("05:00", systemImage: "mouth")
-                .foregroundColor(.orange)
-        @unknown default:
-            Text("Unknown")
         }
     }
 }
@@ -447,7 +370,7 @@ struct Brushr_watchOS_Widget: Widget {
             Brushr_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://custom"))
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A Custom Timer")
@@ -463,7 +386,7 @@ struct Brushr_30_watchOS_Widget: Widget {
             Brushr_30_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://30sec")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 00:30 Timer")
@@ -479,7 +402,7 @@ struct Brushr_1_watchOS_Widget: Widget {
             Brushr_1_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://1min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 01:00 Timer")
@@ -495,7 +418,7 @@ struct Brushr_2_watchOS_Widget: Widget {
             Brushr_2_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://2min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 02:00 Timer")
@@ -511,7 +434,7 @@ struct Brushr_3_watchOS_Widget: Widget {
             Brushr_3_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://3min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 03:00 Timer")
@@ -527,7 +450,7 @@ struct Brushr_4_watchOS_Widget: Widget {
             Brushr_4_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://4min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 04:00 Timer")
@@ -543,7 +466,7 @@ struct Brushr_5_watchOS_Widget: Widget {
             Brushr_5_watchOS_WidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "brushr://5min")!)
                 .containerBackground(for: .widget) {
-                    Color.accentColor
+                    Color(uiColor: .darkGray)
                 }
         }
         .configurationDisplayName("Start A 05:00 Timer")
