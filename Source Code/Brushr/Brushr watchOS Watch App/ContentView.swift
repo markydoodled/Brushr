@@ -41,6 +41,8 @@ struct ContentView: View {
         NavigationStack {
             TabView(selection: $tabSelection) {
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -71,6 +73,8 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(1)
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -101,6 +105,8 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(2)
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -131,6 +137,8 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(3)
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -161,6 +169,8 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(4)
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -191,6 +201,8 @@ struct ContentView: View {
                 .buttonStyle(.borderless)
                     .tag(5)
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -251,6 +263,7 @@ struct ContentView: View {
                     HStack {
                         Button(action: {
                             self.timer.upstream.connect().cancel()
+                            Timer().invalidate()
                             WKInterfaceDevice.current().play(.stop)
                             disabledPause = true
                             disabledResume = false
@@ -274,6 +287,7 @@ struct ContentView: View {
                             self.timer.upstream.connect().cancel()
                             WKInterfaceDevice.current().play(.failure)
                             showingCurrentTimer = false
+                            Timer().invalidate()
                         }) {
                             Image(systemName: "xmark")
                         }
@@ -290,6 +304,7 @@ struct ContentView: View {
                         backgroundTime = Date()
                         //Stop The Timer
                         timer.upstream.connect().cancel()
+                        Timer().invalidate()
                     case .active:
                         isActive = true
                         //Calculate The Time Difference And Subtract It From timeRemaining
@@ -305,6 +320,7 @@ struct ContentView: View {
                         backgroundTime = Date()
                         //Stop The Timer
                         timer.upstream.connect().cancel()
+                        Timer().invalidate()
                     default:
                         break
                     }
@@ -323,10 +339,12 @@ struct ContentView: View {
                         WKInterfaceDevice.current().play(.success)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCurrentTimer = false
+                        Timer().invalidate()
                     }
                 }
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar(.hidden, for: .navigationBar)
             }
         }
         //Check And/Or Request HealthKit Store Authorisation
@@ -337,6 +355,8 @@ struct ContentView: View {
         .onOpenURL { url in
             guard url.scheme == "brushr" else { return }
             if url == URL(string: "brushr://30sec") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -349,6 +369,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://1min") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -361,6 +383,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://2min") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -373,6 +397,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://3min") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -385,6 +411,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://4min") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -397,6 +425,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://5min") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 workoutManager.startWorkout()
                 let formatter = DateComponentsFormatter()
                 formatter.allowedUnits = [.minute, .second]
@@ -409,6 +439,8 @@ struct ContentView: View {
                 formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
                 showingCurrentTimer = true
             } else if url == URL(string: "brushr://custom") {
+                timer.upstream.connect().cancel()
+                Timer().invalidate()
                 showingCustomTimer = true
             } else {
                 print("URL Error")
@@ -449,6 +481,7 @@ struct ContentView: View {
                 HStack {
                     Button(action: {
                         self.timer.upstream.connect().cancel()
+                        Timer().invalidate()
                         WKInterfaceDevice.current().play(.stop)
                         disabledPause = true
                         disabledResume = false
@@ -472,6 +505,7 @@ struct ContentView: View {
                         self.timer.upstream.connect().cancel()
                         WKInterfaceDevice.current().play(.failure)
                         showingCustomCurrentTimer = false
+                        Timer().invalidate()
                     }) {
                         Image(systemName: "xmark")
                     }
@@ -487,6 +521,7 @@ struct ContentView: View {
                         backgroundTime = Date()
                         //Stop The Timer
                         timer.upstream.connect().cancel()
+                        Timer().invalidate()
                     case .active:
                         isActive = true
                         //Calculate The Time Difference And Subtract It From timeRemaining
@@ -502,6 +537,7 @@ struct ContentView: View {
                         backgroundTime = Date()
                         //Stop The Timer
                         timer.upstream.connect().cancel()
+                        Timer().invalidate()
                     default:
                         break
                     }
@@ -520,14 +556,18 @@ struct ContentView: View {
                         WKInterfaceDevice.current().play(.success)
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCustomCurrentTimer = false
+                        Timer().invalidate()
                     }
                 }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .navigationBar)
         }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(action: {
+                    timer.upstream.connect().cancel()
+                    Timer().invalidate()
                     workoutManager.startWorkout()
                     let formatter = DateComponentsFormatter()
                     formatter.allowedUnits = [.minute, .second]
@@ -587,9 +627,9 @@ class WorkoutManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLi
     func endWorkout() {
         session?.end()
         builder?.endCollection(withEnd: Date()) { (success, error) in
-            self.builder?.finishWorkout { (workout, error) in
+            /*self.builder?.finishWorkout { (workout, error) in
                 print("Error Finishing Workout")
-            }
+            }*/
         }
     }
     

@@ -19,5 +19,6 @@ struct Brushr_iOS_WidgetBundle: WidgetBundle {
         Brushr_3_iOS_Widget()
         Brushr_4_iOS_Widget()
         Brushr_5_iOS_Widget()
+        Brushr_iOS_Live_Activity()
     }
 }

@@ -10,6 +10,7 @@ import AVFoundation
 import MessageUI
 import UserNotifications
 import HealthKit
+import ActivityKit
 
 struct ContentView: View {
     //Store Value For Custom Minute And Seconds
@@ -19,6 +20,7 @@ struct ContentView: View {
     @State var disabledCustomStart = false
     @State var disabledResume = true
     @State var disabledPause = false
+    @State var disabledStartLiveActivity = false
     //Timer Tracking And Formatting UI Seconds
     @State var timeRemaining = 30
     @State var startTime = 30
@@ -361,13 +363,49 @@ struct ContentView: View {
                             self.timer.upstream.connect().cancel()
                             let systemSoundID: SystemSoundID = 1112
                             AudioServicesPlaySystemSound(systemSoundID)
+                            if Activity<Brushr_iOS_Live_ActivityAttributes>.activities.isEmpty == false {
+                                let finalContent = Brushr_iOS_Live_ActivityAttributes.ContentState(
+                                    remainingTime: "\(formattedTimeSeconds)"
+                                )
+                                
+                                let dismissalPolicy: ActivityUIDismissalPolicy = .immediate
+                                
+                                Task {
+                                    await Activity<Brushr_iOS_Live_ActivityAttributes>.activities.first!.end(
+                                        ActivityContent(state: finalContent, staleDate: nil),
+                                        dismissalPolicy: dismissalPolicy)
+                                }
+                            }
                             showingCurrentTimer = false
+                            disabledStartLiveActivity = false
                         }) {
                             Image(systemName: "xmark")
                                 .font(.largeTitle)
                                 .imageScale(.large)
                         }
                         .buttonStyle(.borderedProminent)
+                        Button(action: {
+                            do {
+                                let attributes = Brushr_iOS_Live_ActivityAttributes(name: "Remaining Brushing Time")
+                                
+                                let initialState = Brushr_iOS_Live_ActivityAttributes.ContentState(remainingTime: "\(formattedTimeSeconds)")
+                                let content = ActivityContent(state: initialState, staleDate: nil, relevanceScore: 0.0)
+                                
+                                let _ = try Activity.request(
+                                    attributes: attributes,
+                                    content: content,
+                                    pushType: nil
+                                )
+                            } catch {
+                                print("Live Activity Start Error")
+                            }
+                            disabledStartLiveActivity = true
+                        }) {
+                            Image(systemName: "clock.badge.fill")
+                                .font(.largeTitle)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(disabledStartLiveActivity)
                     }
                 }
                 .padding(.horizontal)
@@ -381,6 +419,7 @@ struct ContentView: View {
                         backgroundTime = Date()
                         //Stop The Timer
                         timer.upstream.connect().cancel()
+                        
                     case .active:
                         isActive = true
                         UIApplication.shared.isIdleTimerDisabled = true
@@ -404,12 +443,41 @@ struct ContentView: View {
                         formatter.allowedUnits = [.minute, .second]
                         formatter.unitsStyle = .positional
                         formattedTimeSeconds = formatter.string(from: TimeInterval(timeRemaining))!
+                        //If timeRemaining Has Progressed By 10 Seconds Update Live Activity
+                        if timeRemaining.isMultiple(of: 10) {
+                            if Activity<Brushr_iOS_Live_ActivityAttributes>.activities.isEmpty == false {
+                                let contentState = Brushr_iOS_Live_ActivityAttributes.ContentState(remainingTime: "\(formattedTimeSeconds)")
+                                
+                                Task {
+                                    await Activity<Brushr_iOS_Live_ActivityAttributes>.activities.first!.update(
+                                        ActivityContent<Brushr_iOS_Live_ActivityAttributes.ContentState>(
+                                            state: contentState,
+                                            staleDate: nil
+                                        )
+                                    )
+                                }
+                            }
+                        }
                     } else {
                         self.timer.upstream.connect().cancel()
                         let systemSoundID: SystemSoundID = 1111
                         AudioServicesPlaySystemSound(systemSoundID)
+                        if Activity<Brushr_iOS_Live_ActivityAttributes>.activities.isEmpty == false {
+                            let finalContent = Brushr_iOS_Live_ActivityAttributes.ContentState(
+                                remainingTime: "\(formattedTimeSeconds)"
+                            )
+                            
+                            let dismissalPolicy: ActivityUIDismissalPolicy = .immediate
+                            
+                            Task {
+                                await Activity<Brushr_iOS_Live_ActivityAttributes>.activities.first!.end(
+                                    ActivityContent(state: finalContent, staleDate: nil),
+                                    dismissalPolicy: dismissalPolicy)
+                            }
+                        }
                         healthKitManager.saveToothbrushingEvent(timeInSeconds: startTime)
                         showingCurrentTimer = false
+                        disabledStartLiveActivity = false
                     }
                 }
             }
@@ -623,7 +691,7 @@ struct ContentView: View {
                         
                         showingNotificationsScheduled = true
                     }) {
-                        Text("Schedule Notification")
+                        Label("Schedule Notification...", systemImage: "checklist")
                     }
                     DatePicker("Evening", selection: $eveningTime, displayedComponents: .hourAndMinute)
                     Button(action: {
@@ -644,18 +712,22 @@ struct ContentView: View {
                         
                         showingNotificationsScheduled = true
                     }) {
-                        Text("Schedule Notification")
+                        Label("Schedule Notification...", systemImage: "checklist.checked")
                     }
                     .alert("Notifications Scheduled", isPresented: $showingNotificationsScheduled) {
                         Button(action: {}) {
                             Text("Close")
                         }
                     }
+                } header: {
+                    Label("Notifications", systemImage: "bell.badge")
+                }
+                Section {
                     Button(action: {
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                         showingNotificationsCleared = true
                     }) {
-                        Text("Clear Upcoming")
+                        Label("Clear Upcoming Notifications...", systemImage: "x.square")
                     }
                     .alert("Upcoming Notifications Cleared", isPresented: $showingNotificationsCleared) {
                         Button(action: {}) {
@@ -672,15 +744,13 @@ struct ContentView: View {
                         }
                         showingPermissionRequested = true
                     }) {
-                        Text("Request Permissions")
+                        Label("Request Permissions...", systemImage: "questionmark.bubble")
                     }
                     .alert("Notification Permissions Requested", isPresented: $showingPermissionRequested) {
                         Button(action: {}) {
                             Text("Close")
                         }
                     }
-                } header: {
-                    Label("Notifications", systemImage: "bell.badge")
                 }
                 Section {
                     LabeledContent("Version", value: "1.3")
@@ -695,8 +765,8 @@ struct ContentView: View {
                     .sheet(isPresented: $isShowingMailView) {
                         MailView(isShowing: self.$isShowingMailView, result: self.$result)
                     }
-                    Link("GitHub Repository", destination: URL(string: "https://github.com/markydoodled/Brushr")!)
-                    Link("Portfolio", destination: URL(string: "http://markydoodled.com")!)
+                    Link("GitHub Repository...", destination: URL(string: "https://github.com/markydoodled/Brushr")!)
+                    Link("Portfolio...", destination: URL(string: "http://markydoodled.com")!)
                 } header: {
                     Label("Contact", systemImage: "person.crop.circle")
                 }
@@ -808,7 +878,7 @@ struct MailView: UIViewControllerRepresentable {
     }
 }
 
-extension Date: RawRepresentable {
+extension Date: @retroactive RawRepresentable {
     public var rawValue: String {
         self.timeIntervalSinceReferenceDate.description
     }
